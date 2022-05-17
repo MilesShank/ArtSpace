@@ -8,8 +8,10 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  .App-alienQueen {
     animation: App-logo-spin infinite 20s linear;
+    width: 30%;
+    height: auto;
   }
 }
 
