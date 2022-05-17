@@ -1,3 +1,10 @@
+# ArtSpace
+
+5/17:
+This project was created by Miles Shank, to enhance and polish web development skills, as well as deliver unique portfolio designs for myself and other artists.
+linkedin: https://www.linkedin.com/in/miles-shank/
+Project documentation folder: https://docs.google.com/document/d/1pXk1QR0kZevb9kiDZwBwlpWmaouwWpi3ZcZwAHPYoo4/edit?usp=sharing
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
