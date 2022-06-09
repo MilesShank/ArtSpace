@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import driveData from "./gdrive-data.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TestComponent from "./components/TestComponent";
 const gDriveImgLink = "https://drive.google.com/uc?id=";
 var imgData;
@@ -12,15 +12,18 @@ const requestOptions = {
 var imgData;
 
 function App() {
-  useState(() => {
-    loadData();
-  });
-  async function loadData() {
+
+  function loadData() {
     fetch("https://eoimtcqaziwadc2.m.pipedream.net/", requestOptions)
     .then(response => response.json())
-    .then(responseJson => formatData(responseJson))
+    .then(data => setImgData(data))
     .catch(error => console.log('error', error));
     };
+
+  const [imgData, setImgData] = useState([]);
+  useEffect(() => {
+    loadData();
+  });
 
     function formatData(responseJson){
       imgData = responseJson;
@@ -30,6 +33,7 @@ function App() {
     <div className="App">
       <TestComponent/>
         <p>
+          {imgData}
           Edit <code>eyyy</code> and save to reload.
         </p>
         <test/>
