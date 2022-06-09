@@ -14,9 +14,12 @@
 # misc
 .DS_Store
 .env.local
+src\.env.local.txt
+src\gdrive-data.json
 .env.development.local
 .env.test.local
 .env.production.local
+src\artspaceformiles-ec5049933fb0.json
 
 npm-debug.log*
 yarn-debug.log*
