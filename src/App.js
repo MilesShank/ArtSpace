@@ -16,11 +16,12 @@ var imgData;
 function App() {
 
   const [imgData, setImgData] = useState([]);
+
   useEffect(() => {
     loadData();
-  });
+  }, []);
 
-  async function loadData() {
+  function loadData() {
     fetch("https://sheets.googleapis.com/v4/spreadsheets/1o41jm0d7qFoIJP8QEC8U70q6rvdLO2RSRnjyLOiy_qk/values/Sheet1"+"?key="+driveData.gkey)
     .then(response => response.json())
     .then(data => formatData(data.values))
