@@ -3,25 +3,29 @@ import "./App.css";
 import driveData from "./gdrive-data.json";
 import { useEffect, useState } from "react";
 import TestComponent from "./components/TestComponent";
+import DisplayOneImage from "./components/DisplayOneImage";
 import { data } from "autoprefixer";
+import { on } from "ramda";
 const gDriveImgLink = "https://drive.google.com/uc?id=";
-var imgData;
+var imgLink;
 const requestOptions = {
   method: 'GET',
   redirect: 'follow'
 
 };
-var imgData;
 
 function App() {
 
   const [imgData, setImgData] = useState([]);
 
   useEffect(() => {
-    loadData();
-  }, []);
+    loadPieceData();
+  }, []); 
 
-  function loadData() {
+  // This will render all the pieces in order of ID.
+  // We will eventually need loadPieceDataByCategory and loadPieceDataByProject. Rename this to loadPieceDataById at that time.
+  // I think separate API calls will be best for this rather than exessive front end data re-organization. 
+  function loadPieceData() {
     fetch("https://sheets.googleapis.com/v4/spreadsheets/1o41jm0d7qFoIJP8QEC8U70q6rvdLO2RSRnjyLOiy_qk/values/Sheet1"+"?key="+driveData.gkey)
     .then(response => response.json())
     .then(data => formatData(data.values))
@@ -32,32 +36,29 @@ function App() {
 
     function formatData(dataValues){
       const imgDataKeys = dataValues[0]
-      console.log("img data keys" + imgDataKeys
+      console.log("img data keys " + imgDataKeys
       )
-      console.log("")
       console.log(dataValues)
       setImgData(dataValues)
-
-      // console.log("FROM FORMAT DATA" + imgData);
+      console.log("imgData: " + imgData); 
+      imgLink = (gDriveImgLink + dataValues[1][1]);  
+      //for some reason imgData is available after setImgData inconsistently. Missing something here.
     } 
 
-    function DisplayOneImage(){
-      const imgLink = (gDriveImgLink + imgData);
-        <img src={imgLink}> </img>
-    };
-
-  return (
-    <div className="App">
-      <TestComponent/>
-      <DisplayOneImage/>
-        <p>
-          {imgData}
-          <code>eyyy</code>
-        </p>
-      <p>eyy again</p>
-    </div>
-     
-  );
-}
+      return (
+        <div className="App">
+          
+          <TestComponent/>
+          <DisplayOneImage imgLinkTest={imgData[2][1]} /> 
+          {/* imgData[2][1] is an empty object atm. Why? We will certainly find out soon. it is rendering tho! */}
+            <p>
+              <img src = {imgLink}/> 
+               {/* this only works if imgLink is defined at the  top. want to know why that is, ideally.*/}
+              <code>eyyy</code>
+            </p>
+        </div>
+        
+      );
+    }
 
 export default App;
