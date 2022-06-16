@@ -1,10 +1,12 @@
 import React from "react";
 
 const Piece = (props) => {
+  const imgStyle = { backgroundImage: `url(${props.url})` };
+  console.log(props.pieceData);
   return (
-    <div>
-      <img src={props.url}></img>
-      {props.title}
+    <div className="imageGridItem" key={props.pieceData.get("ID")}>
+      <div style={imgStyle} className="imageWrapper" />
+      <h4>{props.pieceData.get("Title")}</h4>
     </div>
   );
 };
