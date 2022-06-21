@@ -4,12 +4,12 @@ import "./index.css";
 import App from "./App";
 import Header from "./components/Header";
 import reportWebVitals from "./reportWebVitals";
-import { gapi } from "gapi-script";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Header />
+
     <App />
   </React.StrictMode>
 );

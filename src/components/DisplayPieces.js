@@ -7,16 +7,19 @@ const DisplayPieces = (props) => {
 
   const displayImages = () => {
     return props.pieceMap.map((piece) => {
-      console.log(piece);
       var imgKey = piece.get("ImgKey");
-      if (piece.get("Role") != "Documentation") {
+      return piece.get("Role") !== "Documentation" ? (
         //we dont want documentation in the main feed
-        return <Piece url={gDriveImgLink + imgKey} pieceData={piece} />;
-      }
+        <Piece
+          url={gDriveImgLink + imgKey}
+          pieceData={piece}
+          key={piece.get("Key")}
+        />
+      ) : null;
     });
   };
 
-  return <div>{displayImages()}</div>;
+  return <div className="pieceContainer">{displayImages()}</div>;
 };
 
 export default DisplayPieces;

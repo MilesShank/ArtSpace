@@ -29,6 +29,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.filtersContainer {
+  /* float: left; */
+  display: inline-block;
+  position: absolute;
+  left: 20px;
+  width: 10%;
+  margin-right: 10%;
+}
+.pieceContainer {
+  position: absolute;
+  right: 30px;
+  margin-left: 15%;
+}
 .imageGridItem {
   background-color: var(--color2);
   display: inline-block;
@@ -62,7 +76,6 @@ code {
 
   cursor: pointer;
   background-color: var(--color5);
-  /* background-image: url(./localAssets/loading.gif); */
   box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.3),
     0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
