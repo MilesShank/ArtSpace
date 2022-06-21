@@ -9,16 +9,14 @@ const DisplayPieces = (props) => {
     return props.pieceMap.map((piece) => {
       console.log(piece);
       var imgKey = piece.get("ImgKey");
-      return <Piece url={gDriveImgLink + imgKey} pieceData={piece} />;
+      if (piece.get("Role") != "Documentation") {
+        //we dont want documentation in the main feed
+        return <Piece url={gDriveImgLink + imgKey} pieceData={piece} />;
+      }
     });
   };
 
-  return (
-    <div>
-      DisplayPieces rendered
-      {displayImages()}
-    </div>
-  );
+  return <div>{displayImages()}</div>;
 };
 
 export default DisplayPieces;
