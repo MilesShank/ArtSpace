@@ -1,7 +1,5 @@
 import React from "react";
-import loading from "../localAssets/loading.gif";
 import { useEffect, useState } from "react";
-import { propSatisfies } from "ramda";
 
 function Piece(props) {
   const imgStyle = { backgroundImage: `url(${props.url})` };
@@ -12,7 +10,10 @@ function Piece(props) {
     ) : null;
   }
   return (
-    <li>
+    <li
+      className={props.pieceData.get("Category")}
+      adult={props.pieceData.get("NSFW")}
+    >
       <div className="imageGridItem" key={props.pieceData.get("Key")}>
         <div style={imgStyle} className="imageWrapper" />
         <div className="overlay">

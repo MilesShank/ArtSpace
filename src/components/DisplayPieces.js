@@ -5,7 +5,7 @@ const DisplayPieces = (props) => {
   const gDriveImgLink = "https://drive.google.com/uc?id=";
   //   const [showDetail, setShowDetail] = useState(null);
 
-  const displayImages = () => {
+  function displayImages() {
     return props.pieceMap.map((piece) => {
       var imgKey = piece.get("ImgKey");
       return piece.get("Role") !== "Documentation" ? (
@@ -17,7 +17,7 @@ const DisplayPieces = (props) => {
         />
       ) : null;
     });
-  };
+  }
 
   return (
     <div className="feedContainer">

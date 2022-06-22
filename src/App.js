@@ -43,7 +43,7 @@ function App() {
   function mapData(dataValues) {
     const dataToMap = dataValues;
     var formattedData = [];
-    var dataCategories = ["18+"];
+    var dataCategories = [];
 
     const dataKeys = dataToMap.shift(); //shift returns first element, also deletes it from array.
 
@@ -57,6 +57,7 @@ function App() {
       formattedData.push(pushPieceMap);
       dataCategories.push(pushPieceMap.get("Category"));
     }
+    dataCategories.push("18+");
     setCategories(dataCategories.filter(unique));
     return formattedData;
   }
