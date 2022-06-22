@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
-//we're going to do an API call to return all the unique values from the category column.
+
 function Filters(props) {
   const displayFilters = () => {
     return props.categories.map((category) => {
       return (
         <label className="switch">
-          <h4>{category}</h4>
+          <h3>{category}</h3>
           <input type="checkbox" role="switch" id="switch" />
         </label>
       );

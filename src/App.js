@@ -2,6 +2,8 @@ import "./App.css";
 import driveData from "./gdrive-data.json";
 import { useEffect, useState } from "react";
 import DisplayPieces from "./components/DisplayPieces";
+import Filters from "./components/DisplayFilters";
+import loading from "./localAssets/loading.gif";
 
 const requestOptions = {
   method: "GET",
@@ -10,6 +12,7 @@ const requestOptions = {
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store formatted data
   const [isLoading, setIsLoading] = useState(false); //for skeleton loading
+  const [categories, setCategories] = useState([]); // for filters
 
   useEffect(() => {
     //this works in place of the previous ComponentDidMount() function
@@ -19,13 +22,12 @@ function App() {
         "?key=" +
         driveData.gkey
     ).then((response) => {
-      if (response.status != 200) {
+      if (response.status !== 200) {
         throw Error("issue fetching data from sheets API");
       }
       return response
         .json() //convert API response to json format.
         .then((data) => {
-          console.log(data);
           setPieceMap(mapData(data.values));
           setIsLoading(false);
         })
@@ -34,11 +36,15 @@ function App() {
         });
     });
   }, []);
-
+  function unique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
   //mapData returns an array of maps, each map is key Value pairs for one Piece/row of spreadhseet.
   function mapData(dataValues) {
     const dataToMap = dataValues;
     var formattedData = [];
+    var dataCategories = ["18+"];
+
     const dataKeys = dataToMap.shift(); //shift returns first element, also deletes it from array.
 
     //optional TODO: there's got to be a better way to do this than nested for loops, right?
@@ -47,8 +53,11 @@ function App() {
       for (let i = 0; i < dataKeys.length; i++) {
         pushPieceMap.set(dataKeys[i], dataToMap[j][i]);
       }
+
       formattedData.push(pushPieceMap);
+      dataCategories.push(pushPieceMap.get("Category"));
     }
+    setCategories(dataCategories.filter(unique));
     return formattedData;
   }
   //we don't need a render function, just return what should render.
@@ -56,12 +65,14 @@ function App() {
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
       <DisplayPieces pieceMap={pieceMap} />
-
-      <code className="text-3xl font-bold underline">eyyy</code>
+      <Filters categories={categories} />
     </div>
   ) : (
     //we're gunna need to prolly skeleton load inside displayPieces
-    <div>thinking wheel or animation goes here </div>
+    <div>
+      {" "}
+      <img src={loading} alt="now loading" className="loadingGif" />{" "}
+    </div>
   );
 }
 

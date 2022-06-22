@@ -11,8 +11,9 @@
   --bgcolor: #dbcca9;
 }
 .header {
+  height: 5rem;
+  border-bottom: 1rem double var(--color1);
   background-color: var(--color3);
-  margin-bottom: 20px;
 }
 body {
   background-color: var(--bgcolor);
@@ -29,7 +30,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+ul {
+  list-style: none;
+  width: 100%;
+}
 
+ul li {
+  position: relative;
+  display: inline-block;
+  width: 16rem;
+  height: 16rem;
+}
 .filtersContainer {
   /* float: left; */
   display: inline-block;
@@ -40,34 +51,26 @@ code {
 }
 .pieceContainer {
   position: absolute;
-  right: 30px;
   margin-left: 15%;
 }
+
 .imageGridItem {
   background-color: var(--color2);
-  display: inline-block;
+  display: block;
   box-sizing: border-box;
-  float: right;
-  padding: 15px;
-  margin: 5px;
-  border-radius: 15px;
+  padding: 0.5rem;
+  margin: 0.5rem;
   overflow: hidden;
-  position: relative;
+  position: auto;
   transition: all 0.5s linear;
   transition-delay: 0.1s;
-  width: 10em;
   text-align: center;
 }
 
-.imageGridItem h4 {
-  color: var(--color4);
-  float: middle;
-  z-index: 0;
-}
 .imageWrapper {
-  z-index: 90;
-  position: relative;
-  width: 100%;
+  display: block;
+  width: auto;
+  height: auto;
   padding-bottom: 100%;
   background-size: cover;
   background-position: center center;
@@ -76,10 +79,22 @@ code {
 
   cursor: pointer;
   background-color: var(--color5);
-  box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
-.imageGridItem:hover .imageWrapper {
-  background-position: right;
-  opacity: 0.4;
+li:hover .overlay {
+  display: block;
+  opacity: 0.9;
+}
+
+.overlay {
+  display: block;
+  background-color: var(--color5);
+  color: (var(--color1));
+  position: absolute;
+  width: 15rem;
+  height: 15rem;
+  opacity: 0;
+  top: 0.5rem;
+  left: 0.5rem;
+  transition: 0.5s ease;
+  cursor: pointer;
 }
