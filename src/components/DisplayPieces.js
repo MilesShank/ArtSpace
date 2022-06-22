@@ -19,7 +19,12 @@ const DisplayPieces = (props) => {
     });
   };
 
-  return <ul className="pieceContainer">{displayImages()}</ul>;
+  return (
+    <div className="feedContainer">
+      {" "}
+      <ul className="pieceContainer">{displayImages()}</ul>{" "}
+    </div>
+  );
 };
 
 export default DisplayPieces;

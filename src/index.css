@@ -11,7 +11,10 @@
   --bgcolor: #dbcca9;
 }
 .header {
-  height: 5rem;
+  z-index: 1;
+  display: block;
+  position: sticky;
+  min-block-size: 10ch;
   border-bottom: 1rem double var(--color1);
   background-color: var(--color3);
 }
@@ -32,34 +35,44 @@ code {
 }
 ul {
   list-style: none;
-  width: 100%;
+  width: 75%;
+  margin-left: 20%;
 }
 
 ul li {
   position: relative;
   display: inline-block;
-  width: 16rem;
-  height: 16rem;
+  width: 25%;
+  min-width: 200px;
 }
-.filtersContainer {
-  /* float: left; */
-  display: inline-block;
-  position: absolute;
-  left: 20px;
-  width: 10%;
-  margin-right: 10%;
+@media (orientation: landscape) {
+  .filtersContainer {
+    /* float: left; */
+    display: inline-block;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: fit-content;
+    height: 100%;
+    padding: 1%;
+    padding-top: 10ch;
+    background-color: var(--color3);
+    color: var(--color5);
+  }
 }
 .pieceContainer {
-  position: absolute;
-  margin-left: 15%;
+  position: inline-block;
+  margin-left: 20%;
 }
-
+.feedContainer {
+  position: inline-block;
+}
 .imageGridItem {
   background-color: var(--color2);
   display: block;
   box-sizing: border-box;
-  padding: 0.5rem;
-  margin: 0.5rem;
+  padding: 5%;
+  margin: 5%;
   overflow: hidden;
   position: auto;
   transition: all 0.5s linear;
@@ -88,13 +101,17 @@ li:hover .overlay {
 .overlay {
   display: block;
   background-color: var(--color5);
-  color: (var(--color1));
+  color: var(--color1);
   position: absolute;
-  width: 15rem;
-  height: 15rem;
+  width: 90%;
+  height: 90%;
   opacity: 0;
-  top: 0.5rem;
-  left: 0.5rem;
+  top: 5%;
+  left: 5%;
   transition: 0.5s ease;
   cursor: pointer;
+}
+
+.switch {
+  padding: 3%;
 }

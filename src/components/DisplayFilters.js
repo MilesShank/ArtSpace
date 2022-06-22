@@ -5,15 +5,17 @@ function Filters(props) {
   const displayFilters = () => {
     return props.categories.map((category) => {
       return (
-        <label className="switch">
-          <h3>{category}</h3>
-          <input type="checkbox" role="switch" id="switch" />
-        </label>
+        <div>
+          <label className="switch">
+            <h3>{category}</h3>
+            <input type="checkbox" role="switch" id="switch" defaultChecked />
+          </label>
+        </div>
       );
     });
   };
 
-  return <div className="filtersContainer">{displayFilters()}</div>;
+  return <section className="filtersContainer">{displayFilters()}</section>;
 }
 
 export default Filters;
