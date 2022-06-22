@@ -10,9 +10,11 @@ const requestOptions = {
   redirect: "follow",
 };
 function App() {
-  const [pieceMap, setPieceMap] = useState(null); //where we'll store formatted data
-  const [isLoading, setIsLoading] = useState(false); //for skeleton loading
-  const [categories, setCategories] = useState([]); // for filters
+  const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data
+  const [activePieces, setActivePieces] = useState(null); //conceptually, we modify this with filters, then that will auto re-render displayImages? maybe?
+  const [isLoading, setIsLoading] = useState(false); //for loading screens
+  const [allCategories, setAllCategories] = useState([]); // for all filters
+  const [activeCategories, setActiveCategories] = useState([]); //for active filters
 
   useEffect(() => {
     //this works in place of the previous ComponentDidMount() function
@@ -35,38 +37,40 @@ function App() {
           throw Error("oops another error");
         });
     });
+    //mapData returns an array of maps, each map is key Value pairs for one Piece/row of spreadhseet.
+    function mapData(dataValues) {
+      const dataToMap = dataValues;
+      var formattedData = [];
+      var dataCategories = [];
+
+      const dataKeys = dataToMap.shift(); //shift returns first element, also deletes it from array.
+
+      //optional TODO: there's got to be a better way to do this than nested for loops, right?
+      for (let j = 0; j < dataToMap.length; j++) {
+        const pushPieceMap = new Map();
+        for (let i = 0; i < dataKeys.length; i++) {
+          pushPieceMap.set(dataKeys[i], dataToMap[j][i]);
+        }
+
+        formattedData.push(pushPieceMap);
+        dataCategories.push(pushPieceMap.get("Category"));
+      }
+      setActiveCategories(dataCategories);
+      dataCategories.push("18+");
+      setAllCategories(dataCategories.filter(unique));
+      return formattedData;
+    }
   }, []);
   function unique(value, index, self) {
     return self.indexOf(value) === index;
   }
-  //mapData returns an array of maps, each map is key Value pairs for one Piece/row of spreadhseet.
-  function mapData(dataValues) {
-    const dataToMap = dataValues;
-    var formattedData = [];
-    var dataCategories = [];
 
-    const dataKeys = dataToMap.shift(); //shift returns first element, also deletes it from array.
-
-    //optional TODO: there's got to be a better way to do this than nested for loops, right?
-    for (let j = 0; j < dataToMap.length; j++) {
-      const pushPieceMap = new Map();
-      for (let i = 0; i < dataKeys.length; i++) {
-        pushPieceMap.set(dataKeys[i], dataToMap[j][i]);
-      }
-
-      formattedData.push(pushPieceMap);
-      dataCategories.push(pushPieceMap.get("Category"));
-    }
-    dataCategories.push("18+");
-    setCategories(dataCategories.filter(unique));
-    return formattedData;
-  }
   //we don't need a render function, just return what should render.
   return !isLoading && pieceMap ? ( //implement splash page with local assets to minimize loading.
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
-      <DisplayPieces pieceMap={pieceMap} />
-      <Filters categories={categories} />
+      <DisplayPieces pieceMap={pieceMap} categories={activeCategories} />
+      <Filters categories={allCategories} />
     </div>
   ) : (
     //we're gunna need to prolly skeleton load inside displayPieces
