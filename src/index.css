@@ -45,6 +45,7 @@ ul li {
   width: 25%;
   min-width: 200px;
 }
+
 @media (orientation: landscape) {
   .filtersContainer {
     /* float: left; */
@@ -59,7 +60,28 @@ ul li {
     background-color: var(--color3);
     color: var(--color5);
   }
+
+  ul li {
+    position: relative;
+    display: inline-block;
+    width: 30%;
+    min-width: 300px;
+  }
 }
+
+@media (orientation: portrait) {
+  .filtersContainer {
+    display: none;
+  }
+
+  ul li {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    min-width: 100px;
+  }
+}
+
 .pieceContainer {
   position: inline-block;
   margin-left: 20%;
@@ -108,8 +130,14 @@ li:hover .overlay {
   opacity: 0;
   top: 5%;
   left: 5%;
+  padding-top: 25%;
   transition: 0.5s ease;
   cursor: pointer;
+  text-align: center center;
+}
+
+.overlay h4 {
+  font-weight: 300;
 }
 
 .switch {
