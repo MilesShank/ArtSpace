@@ -2,20 +2,20 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 function Filters(props) {
-  function sortByFilter(category) {}
+  //checks which filters
   function displayFilters() {
-    return props.categories.map((category) => {
-      return category !== "18+" ? (
+    return props.allFilters.map((filter) => {
+      return props.activeFilters.includes(filter) ? (
         <div>
           <label className="switch">
-            <h3>{category}</h3>
+            <h3>{filter}</h3>
             <input type="checkbox" role="switch" id="switch" defaultChecked />
           </label>
         </div>
       ) : (
         <div>
           <label className="switch">
-            <h3>{category}</h3>
+            <h3>{filter}</h3>
             <input type="checkbox" role="switch" id="switch" />
           </label>
         </div>

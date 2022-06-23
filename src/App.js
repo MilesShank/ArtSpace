@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import DisplayPieces from "./components/DisplayPieces";
 import Filters from "./components/DisplayFilters";
 import loading from "./localAssets/loading.gif";
+import unique from "./utilityFunctions";
 
 const requestOptions = {
   method: "GET",
@@ -11,10 +12,9 @@ const requestOptions = {
 };
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data
-  const [activePieces, setActivePieces] = useState(null); //conceptually, we modify this with filters, then that will auto re-render displayImages? maybe?
   const [isLoading, setIsLoading] = useState(false); //for loading screens
-  const [allCategories, setAllCategories] = useState([]); // for all filters
-  const [activeCategories, setActiveCategories] = useState([]); //for active filters
+  const [allFilters, setAllFilters] = useState([]); // for all filters
+  const [activeFilters, setActiveFilters] = useState([]); //for active filters
 
   useEffect(() => {
     //this works in place of the previous ComponentDidMount() function
@@ -50,34 +50,39 @@ function App() {
         const pushPieceMap = new Map();
         for (let i = 0; i < dataKeys.length; i++) {
           pushPieceMap.set(dataKeys[i], dataToMap[j][i]);
+          pushPieceMap.set("isActive", false);
         }
 
         formattedData.push(pushPieceMap);
         dataCategories.push(pushPieceMap.get("Category"));
       }
-      setActiveCategories(dataCategories);
-      dataCategories.push("18+");
-      setAllCategories(dataCategories.filter(unique));
+      sortFilterData(dataCategories); //all categoriy values
       return formattedData;
     }
+
+    function sortFilterData(dataCategories) {
+      setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category fiters actve.
+      dataCategories.push("18+"); //for my website I want mature content to be manually selected before its displayed.
+      setAllFilters(dataCategories.filter(unique));
+    }
   }, []);
-  function unique(value, index, self) {
-    return self.indexOf(value) === index;
+
+  function setPieceActivity(piece, activeFilters) {
+    activeFilters.includes(piece.get("Category"))
+      ? piece.set("isActive", true)
+      : piece.set("isActive", false);
   }
 
   //we don't need a render function, just return what should render.
   return !isLoading && pieceMap ? ( //implement splash page with local assets to minimize loading.
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
-      <DisplayPieces pieceMap={pieceMap} categories={activeCategories} />
-      <Filters categories={allCategories} />
+      <DisplayPieces pieceMap={pieceMap} categories={activeFilters} />
+      <Filters allFilters={allFilters} activeFilters={activeFilters} />
     </div>
   ) : (
     //we're gunna need to prolly skeleton load inside displayPieces
-    <div>
-      {" "}
-      <img src={loading} alt="now loading" className="loadingGif" />{" "}
-    </div>
+    <div> loading... please be patient </div>
   );
 }
 
