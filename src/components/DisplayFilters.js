@@ -2,12 +2,12 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 function Filters(props) {
-  //checks which filters
+  //checks which filters are active, displays status.
   function displayFilters() {
     return props.allFilters.map((filter) => {
       return props.activeFilters.includes(filter) ? (
         <div>
-          <label className="switch">
+          <label for={filter} className="switch">
             <h3>{filter}</h3>
             <input type="checkbox" role="switch" id="switch" defaultChecked />
           </label>

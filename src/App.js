@@ -5,7 +5,6 @@ import DisplayPieces from "./components/DisplayPieces";
 import Filters from "./components/DisplayFilters";
 import loading from "./localAssets/loading.gif";
 import unique from "./utilityFunctions";
-
 const requestOptions = {
   method: "GET",
   redirect: "follow",
@@ -37,7 +36,7 @@ function App() {
           throw Error("oops another error");
         });
     });
-    //mapData returns an array of maps, each map is key Value pairs for one Piece/row of spreadhseet.
+    //mapData returns an array of maps, each map is key Value pairs for one Piece/row of the spreadhseet.
     function mapData(dataValues) {
       const dataToMap = dataValues;
       var formattedData = [];
@@ -50,34 +49,44 @@ function App() {
         const pushPieceMap = new Map();
         for (let i = 0; i < dataKeys.length; i++) {
           pushPieceMap.set(dataKeys[i], dataToMap[j][i]);
-          pushPieceMap.set("isActive", false);
         }
 
-        formattedData.push(pushPieceMap);
-        dataCategories.push(pushPieceMap.get("Category"));
+        formattedData.push(pushPieceMap); //for displaying pieces
+        dataCategories.push(pushPieceMap.get("Category")); //for displaying filters
       }
-      sortFilterData(dataCategories); //all categoriy values
-      return formattedData;
+
+      return sortFilterData(dataCategories, formattedData); //all category values + 18+ are put into allFilters, all categories except 18+ go into active filters.
     }
 
-    function sortFilterData(dataCategories) {
+    function sortFilterData(dataCategories, formattedData) {
       setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category fiters actve.
+      console.log(activeFilters);
       dataCategories.push("18+"); //for my website I want mature content to be manually selected before its displayed.
       setAllFilters(dataCategories.filter(unique));
+      formattedData.forEach(setPieceActivity);
+      return formattedData;
     }
   }, []);
 
-  function setPieceActivity(piece, activeFilters) {
-    activeFilters.includes(piece.get("Category"))
-      ? piece.set("isActive", true)
-      : piece.set("isActive", false);
+  function setPieceActivity(piece) {
+    console.log(activeFilters);
+    var adult = piece.get("NSFW") === "TRUE";
+    if (
+      (activeFilters.includes("18+") || adult == false) &&
+      piece.get("Role") !== "Documentation"
+    ) {
+      activeFilters.includes(piece.get("Category"))
+        ? piece.set("isActive", true)
+        : piece.set("isActive", false);
+    }
+    console.log(piece);
   }
 
   //we don't need a render function, just return what should render.
-  return !isLoading && pieceMap ? ( //implement splash page with local assets to minimize loading.
+  return !isLoading && pieceMap && activeFilters ? ( //implement splash page with local assets to minimize loading.
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
-      <DisplayPieces pieceMap={pieceMap} categories={activeFilters} />
+      <DisplayPieces pieceMap={pieceMap} />
       <Filters allFilters={allFilters} activeFilters={activeFilters} />
     </div>
   ) : (
