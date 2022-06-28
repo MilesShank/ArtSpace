@@ -11,7 +11,7 @@ const requestOptions = {
 };
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data
-  const [activePieces, setActivePieces] = useState(null);
+  const [activePieces, setActivePieces] = useState([]);
   const [isLoading, setIsLoading] = useState(false); //for loading screens
   const [allFilters, setAllFilters] = useState([]); // for all filters
   const [activeFilters, setActiveFilters] = useState([]); //for active filters
@@ -30,17 +30,16 @@ function App() {
       return response
         .json() //convert API response to json format.
         .then((data) => {
-          setPieceMap(mapData(data.values));
+          setPieceMap(mapData(data.values)); //change the json into array of maps, sort it.
+          setActivePieces(pieceMap.filter(setPieceActivity)); //documentation and nsfw by default will not be active
 
-          setActivePieces(pieceMap.filter(setPieceActivity));
-          console.log(activePieces);
           setIsLoading(false);
         })
         .catch((error) => {
           throw Error("oops another error");
         });
     });
-  });
+  }, []);
 
   //mapData returns an array of maps, each map is key Value pairs for one Piece/row of the spreadhseet.
   function mapData(dataValues) {
@@ -62,6 +61,7 @@ function App() {
     }
     sortFilterData(dataCategories); //gives us all unique categories
     console.log("mapdata, setAllFilters called first time " + allFilters);
+
     return formattedData;
   }
 
