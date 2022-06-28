@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import DisplayPieces from "./components/DisplayPieces";
 import Filters from "./components/DisplayFilters";
 import loading from "./localAssets/loading.gif";
-import unique from "./utilityFunctions";
+import { unique } from "./utilityFunctions";
 const requestOptions = {
   method: "GET",
   redirect: "follow",
 };
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data
+  const [activePieces, setActivePieces] = useState(null);
   const [isLoading, setIsLoading] = useState(false); //for loading screens
   const [allFilters, setAllFilters] = useState([]); // for all filters
   const [activeFilters, setActiveFilters] = useState([]); //for active filters
@@ -30,46 +31,47 @@ function App() {
         .json() //convert API response to json format.
         .then((data) => {
           setPieceMap(mapData(data.values));
+
+          setActivePieces(pieceMap.filter(setPieceActivity));
+          console.log(activePieces);
           setIsLoading(false);
         })
         .catch((error) => {
           throw Error("oops another error");
         });
     });
-    //mapData returns an array of maps, each map is key Value pairs for one Piece/row of the spreadhseet.
-    function mapData(dataValues) {
-      const dataToMap = dataValues;
-      var formattedData = [];
-      var dataCategories = [];
+  });
 
-      const dataKeys = dataToMap.shift(); //shift returns first element, also deletes it from array.
+  //mapData returns an array of maps, each map is key Value pairs for one Piece/row of the spreadhseet.
+  function mapData(dataValues) {
+    const dataToMap = dataValues;
+    var formattedData = [];
+    var dataCategories = [];
 
-      //optional TODO: there's got to be a better way to do this than nested for loops, right?
-      for (let j = 0; j < dataToMap.length; j++) {
-        const pushPieceMap = new Map();
-        for (let i = 0; i < dataKeys.length; i++) {
-          pushPieceMap.set(dataKeys[i], dataToMap[j][i]);
-        }
+    const dataKeys = dataToMap.shift(); //shift returns first element, also deletes it from array.
 
-        formattedData.push(pushPieceMap); //for displaying pieces
-        dataCategories.push(pushPieceMap.get("Category")); //for displaying filters
+    //optional TODO: there's got to be a better way to do this than nested for loops, right?
+    for (let j = 0; j < dataToMap.length; j++) {
+      const pushPieceMap = new Map();
+      for (let i = 0; i < dataKeys.length; i++) {
+        pushPieceMap.set(dataKeys[i], dataToMap[j][i]);
       }
 
-      return sortFilterData(dataCategories, formattedData); //all category values + 18+ are put into allFilters, all categories except 18+ go into active filters.
+      formattedData.push(pushPieceMap); //for displaying pieces
+      dataCategories.push(pushPieceMap.get("Category")); //for displaying filters
     }
+    sortFilterData(dataCategories); //gives us all unique categories
+    console.log("mapdata, setAllFilters called first time " + allFilters);
+    return formattedData;
+  }
 
-    function sortFilterData(dataCategories, formattedData) {
-      setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category fiters actve.
-      console.log(activeFilters);
-      dataCategories.push("18+"); //for my website I want mature content to be manually selected before its displayed.
-      setAllFilters(dataCategories.filter(unique));
-      formattedData.forEach(setPieceActivity);
-      return formattedData;
-    }
-  }, []);
+  function sortFilterData(dataCategories) {
+    setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category fiters actve.
+    dataCategories.push("18+"); //for my website I want mature content to be manually selected before its displayed.
+    setAllFilters(dataCategories.filter(unique));
+  }
 
   function setPieceActivity(piece) {
-    console.log(activeFilters);
     var adult = piece.get("NSFW") === "TRUE";
     if (
       (activeFilters.includes("18+") || adult == false) &&
@@ -78,15 +80,18 @@ function App() {
       activeFilters.includes(piece.get("Category"))
         ? piece.set("isActive", true)
         : piece.set("isActive", false);
+    } else {
+      piece.set("isActive", false);
     }
     console.log(piece);
+    return piece.get("isActive");
   }
 
   //we don't need a render function, just return what should render.
-  return !isLoading && pieceMap && activeFilters ? ( //implement splash page with local assets to minimize loading.
+  return !isLoading && activePieces && activeFilters ? ( //implement splash page with local assets to minimize loading.
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
-      <DisplayPieces pieceMap={pieceMap} />
+      <DisplayPieces pieceMap={activePieces} />
       <Filters allFilters={allFilters} activeFilters={activeFilters} />
     </div>
   ) : (

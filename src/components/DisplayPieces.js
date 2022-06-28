@@ -8,14 +8,13 @@ const DisplayPieces = (props) => {
   function displayImages() {
     return props.pieceMap.map((piece) => {
       var imgKey = piece.get("ImgKey");
-      return piece.get("Role") !== "Documentation" ? (
-        //we dont want documentation in the main feed
+      return (
         <Piece
           url={gDriveImgLink + imgKey}
           pieceData={piece}
           key={piece.get("Key")}
         />
-      ) : null;
+      );
     });
   }
 

@@ -2,4 +2,8 @@ function unique(value, index, self) {
   return self.indexOf(value) === index;
 }
 
-export default unique;
+function isPieceActive(piece) {
+  return piece.get("isActive");
+}
+
+export { unique, isPieceActive };
