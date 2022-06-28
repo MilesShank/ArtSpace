@@ -23,22 +23,25 @@ function App() {
       "https://sheets.googleapis.com/v4/spreadsheets/1o41jm0d7qFoIJP8QEC8U70q6rvdLO2RSRnjyLOiy_qk/values/Sheet1" +
         "?key=" +
         driveData.gkey
-    ).then((response) => {
-      if (response.status !== 200) {
-        throw Error("issue fetching data from sheets API");
-      }
-      return response
-        .json() //convert API response to json format.
-        .then((data) => {
-          setPieceMap(mapData(data.values)); //change the json into array of maps, sort it.
-          setActivePieces(pieceMap.filter(setPieceActivity)); //documentation and nsfw by default will not be active
-
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          throw Error("oops another error");
-        });
-    });
+    )
+      .then((response) => {
+        if (response.status !== 200) {
+          throw Error("issue fetching data from sheets API");
+        }
+        return response.json(); //convert API response to json format.
+      })
+      .then((data) => {
+        const formattedArray = mapData(data.values);
+        console.log(formattedArray);
+        setPieceMap(formattedArray[0]);
+        sortFilterData(formattedArray[1]);
+        setActivePieces(pieceMap.filter(setPieceActivity)); //documentation and nsfw by default will not be active
+        console.log("mapdata, setAllFilters called first time " + allFilters);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log("oops another error", error);
+      });
   }, []);
 
   //mapData returns an array of maps, each map is key Value pairs for one Piece/row of the spreadhseet.
@@ -59,10 +62,8 @@ function App() {
       formattedData.push(pushPieceMap); //for displaying pieces
       dataCategories.push(pushPieceMap.get("Category")); //for displaying filters
     }
-    sortFilterData(dataCategories); //gives us all unique categories
-    console.log("mapdata, setAllFilters called first time " + allFilters);
 
-    return formattedData;
+    return [formattedData, dataCategories];
   }
 
   function sortFilterData(dataCategories) {
