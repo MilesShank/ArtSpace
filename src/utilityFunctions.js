@@ -3,7 +3,7 @@ function unique(value, index, self) {
 }
 
 function isPieceActive(piece) {
-  return piece.get("isActive");
+  return piece.isActive;
 }
 
 export { unique, isPieceActive };

@@ -7,13 +7,9 @@ const DisplayPieces = (props) => {
 
   function displayImages() {
     return props.pieceMap.map((piece) => {
-      var imgKey = piece.get("ImgKey");
+      var imgKey = piece.ImgKey;
       return (
-        <Piece
-          url={gDriveImgLink + imgKey}
-          pieceData={piece}
-          key={piece.get("Key")}
-        />
+        <Piece url={gDriveImgLink + imgKey} pieceData={piece} key={piece.Key} />
       );
     });
   }

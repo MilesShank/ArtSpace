@@ -5,13 +5,14 @@ import DisplayPieces from "./components/DisplayPieces";
 import Filters from "./components/DisplayFilters";
 import loading from "./localAssets/loading.gif";
 import { unique } from "./utilityFunctions";
+import { forEach } from "ramda";
+import React from "react";
 const requestOptions = {
   method: "GET",
   redirect: "follow",
 };
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data
-  const [activePieces, setActivePieces] = useState([]);
   const [isLoading, setIsLoading] = useState(false); //for loading screens
   const [allFilters, setAllFilters] = useState([]); // for all filters
   const [activeFilters, setActiveFilters] = useState([]); //for active filters
@@ -31,12 +32,11 @@ function App() {
         return response.json(); //convert API response to json format.
       })
       .then((data) => {
-        const formattedArray = mapData(data.values);
-        console.log(formattedArray);
-        setPieceMap(formattedArray[0]);
-        sortFilterData(formattedArray[1]);
-        setActivePieces(pieceMap.filter(setPieceActivity)); //documentation and nsfw by default will not be active
-        console.log("mapdata, setAllFilters called first time " + allFilters);
+        const { formattedData, dataCategories, documentationStorage } = mapData(
+          data.values
+        );
+        setPieceMap(formattedData);
+        sortFilterData(dataCategories);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -44,26 +44,35 @@ function App() {
       });
   }, []);
 
+  const activePieces = React.useMemo(() => {
+    if (pieceMap) {
+      return pieceMap.filter((piece) => activeFilters.includes(piece.Category));
+    }
+    return [];
+  }, [pieceMap, activeFilters]);
+
   //mapData returns an array of maps, each map is key Value pairs for one Piece/row of the spreadhseet.
   function mapData(dataValues) {
     const dataToMap = dataValues;
-    var formattedData = [];
-    var dataCategories = [];
-
+    const dataCategories = [];
+    const documentationStorage = [];
     const dataKeys = dataToMap.shift(); //shift returns first element, also deletes it from array.
 
-    //optional TODO: there's got to be a better way to do this than nested for loops, right?
-    for (let j = 0; j < dataToMap.length; j++) {
-      const pushPieceMap = new Map();
-      for (let i = 0; i < dataKeys.length; i++) {
-        pushPieceMap.set(dataKeys[i], dataToMap[j][i]);
+    const formattedData = [];
+    dataValues.forEach((row) => {
+      const piece = {};
+      row.forEach((value, index) => {
+        piece[dataKeys[index]] = value;
+      });
+      dataCategories.push(piece.Category);
+      if (piece.Role === "Documentation") {
+        documentationStorage.push(piece);
+        return;
       }
+      formattedData.push(piece);
+    });
 
-      formattedData.push(pushPieceMap); //for displaying pieces
-      dataCategories.push(pushPieceMap.get("Category")); //for displaying filters
-    }
-
-    return [formattedData, dataCategories];
+    return { formattedData, dataCategories, documentationStorage };
   }
 
   function sortFilterData(dataCategories) {
@@ -72,24 +81,13 @@ function App() {
     setAllFilters(dataCategories.filter(unique));
   }
 
-  function setPieceActivity(piece) {
-    var adult = piece.get("NSFW") === "TRUE";
-    if (
-      (activeFilters.includes("18+") || adult == false) &&
-      piece.get("Role") !== "Documentation"
-    ) {
-      activeFilters.includes(piece.get("Category"))
-        ? piece.set("isActive", true)
-        : piece.set("isActive", false);
-    } else {
-      piece.set("isActive", false);
-    }
-    console.log(piece);
-    return piece.get("isActive");
-  }
+  console.log("allFilters ", allFilters);
+  console.log("activeFilters", activeFilters);
+  console.log("activePieces", activePieces);
+  console.log("pieceMap", pieceMap);
 
   //we don't need a render function, just return what should render.
-  return !isLoading && activePieces && activeFilters ? ( //implement splash page with local assets to minimize loading.
+  return !isLoading ? ( //implement splash page with local assets to minimize loading.
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
       <DisplayPieces pieceMap={activePieces} />
