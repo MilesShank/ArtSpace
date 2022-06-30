@@ -1,7 +1,8 @@
+import { composeP } from "ramda";
 import React from "react";
 import { useEffect, useState, useRef } from "react";
 
-function Filters({ activeFilters, allFilters }) {
+function Filters({ activeFilters, allFilters, setActiveFilters }) {
   //checks which filters are active, displays status.
   // function handleClick(filter) {
   //   console.log(filter);
@@ -14,17 +15,41 @@ function Filters({ activeFilters, allFilters }) {
 
   function displayFilters() {
     return allFilters.map((filter) => {
-      return <Filter activeFilters={activeFilters} filter={filter} />;
+      return (
+        <Filter
+          activeFilters={activeFilters}
+          filter={filter}
+          setActiveFilters={setActiveFilters}
+        />
+      );
     });
   }
 
   function Filter({ activeFilters, filter }) {
-    const [isActive, setIsActive] = useState(activeFilters.includes(filter));
+    const [activeStatus, setActiveStatus] = useState(
+      activeFilters.includes(filter)
+    );
 
-    function onCheckboxClick(filter) {
-      console.log(filter, "working!");
+    function onCheckboxClick(clickedFilter) {
+      console.log(clickedFilter, "working!");
+      console.log(activeStatus, "activeStatus");
+
+      let newActiveFilters = activeFilters;
+      if (activeStatus) {
+        newActiveFilters = newActiveFilters.filter(
+          (element) => element !== clickedFilter
+        );
+        setActiveStatus(false);
+        setActiveFilters(newActiveFilters);
+      } else {
+        console.log(activeFilters);
+        newActiveFilters.push(clickedFilter);
+        setActiveStatus(true);
+        setActiveFilters(newActiveFilters);
+        console.log(activeFilters);
+      }
     }
-    return isActive ? (
+    return activeStatus ? (
       <div id={filter}>
         <label for={filter} className="switch">
           <h3>{filter}</h3>
@@ -33,7 +58,7 @@ function Filters({ activeFilters, allFilters }) {
             role="switch"
             id="switch"
             defaultChecked
-            onClick={() => onCheckboxClick({ filter })}
+            onClick={() => onCheckboxClick(filter)}
           />
         </label>
       </div>
@@ -45,7 +70,8 @@ function Filters({ activeFilters, allFilters }) {
             type="checkbox"
             role="switch"
             id="switch"
-            onClick={() => onCheckboxClick({ filter })}
+            defaultUnchecked
+            onClick={() => onCheckboxClick(filter)}
           />
         </label>
       </div>

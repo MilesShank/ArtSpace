@@ -45,6 +45,7 @@ function App() {
   }, []);
 
   const activePieces = React.useMemo(() => {
+    console.log("ActivePieces triggered");
     if (pieceMap) {
       if (activeFilters.includes("18+")) {
         return pieceMap.filter((piece) =>
@@ -99,7 +100,11 @@ function App() {
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
       <DisplayPieces pieceMap={activePieces} />
-      <Filters allFilters={allFilters} activeFilters={activeFilters} />
+      <Filters
+        allFilters={allFilters}
+        activeFilters={activeFilters}
+        setActiveFilters={setActiveFilters}
+      />
     </div>
   ) : (
     //we're gunna need to prolly skeleton load inside displayPieces
@@ -107,4 +112,4 @@ function App() {
   );
 }
 
-export default App;
+export { App };
