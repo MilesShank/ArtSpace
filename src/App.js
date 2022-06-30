@@ -46,7 +46,15 @@ function App() {
 
   const activePieces = React.useMemo(() => {
     if (pieceMap) {
-      return pieceMap.filter((piece) => activeFilters.includes(piece.Category));
+      if (activeFilters.includes("18+")) {
+        return pieceMap.filter((piece) =>
+          activeFilters.includes(piece.Category)
+        );
+      }
+      return pieceMap.filter(
+        (piece) =>
+          activeFilters.includes(piece.Category) && piece.NSFW === "FALSE"
+      );
     }
     return [];
   }, [pieceMap, activeFilters]);
