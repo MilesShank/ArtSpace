@@ -43,10 +43,8 @@ function Filters({ activeFilters, allFilters, setActiveFilters }) {
         setActiveFilters(newActiveFilters);
       } else {
         console.log(activeFilters);
-        newActiveFilters.push(clickedFilter);
         setActiveStatus(true);
-        setActiveFilters(newActiveFilters);
-        console.log(activeFilters);
+        setActiveFilters(newActiveFilters.concat([clickedFilter]));
       }
     }
     return activeStatus ? (
