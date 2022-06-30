@@ -89,10 +89,10 @@ function App() {
     setAllFilters(dataCategories.filter(unique));
   }
 
-  console.log("allFilters ", allFilters);
-  console.log("activeFilters", activeFilters);
-  console.log("activePieces", activePieces);
-  console.log("pieceMap", pieceMap);
+  // console.log("allFilters ", allFilters);
+  // console.log("activeFilters", activeFilters);
+  // console.log("activePieces", activePieces);
+  // console.log("pieceMap", pieceMap);
 
   //we don't need a render function, just return what should render.
   return !isLoading ? ( //implement splash page with local assets to minimize loading.
