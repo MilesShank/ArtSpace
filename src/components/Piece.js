@@ -3,12 +3,18 @@ import { useEffect, useState } from "react";
 
 function Piece({ pieceData, url }) {
   const imgStyle = { backgroundImage: `url(${url})` };
-
+  function handleClick(pieceData) {
+    console.log(pieceData.Title, "working!");
+  }
   function displayProject() {
     return pieceData.Project !== null ? <h6>{pieceData.Project}</h6> : null;
   }
   return (
-    <li className={pieceData.Category} adult={pieceData.NSFW}>
+    <li
+      className={pieceData.Category}
+      adult={pieceData.NSFW}
+      onClick={() => handleClick(pieceData)}
+    >
       <div className="imageGridItem" key={pieceData.Key}>
         <div style={imgStyle} className="imageWrapper" />
         <div className="overlay">
