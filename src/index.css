@@ -74,6 +74,10 @@ ul li {
     width: 30%;
     min-width: 300px;
   }
+
+  .filterContainer {
+    padding-top: 40px;
+  }
 }
 
 @media (orientation: portrait) {

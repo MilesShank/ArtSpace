@@ -1,12 +1,17 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
+import { Button, Overlay } from "@blueprintjs/core";
 function Piece({ pieceData, url }) {
   const [displayPieceModal, setDisplayPieceModal] = useState(false);
   const imgStyle = { backgroundImage: `url(${url})` };
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleOverlay() {
+    setIsOpen(!isOpen);
+  }
   function handleClick(pieceData) {
     console.log(pieceData.Title, "working!");
-    return <PieceModal pieceData={pieceData} url={url} />;
+    toggleOverlay();
   }
   function displayProject() {
     return pieceData.Project !== null ? <h6>{pieceData.Project}</h6> : null;
@@ -23,6 +28,13 @@ function Piece({ pieceData, url }) {
           <h4>{pieceData.Title}</h4>
           <div>{displayProject()}</div>
         </div>
+      </div>
+      <div>
+        <Overlay isOpen={isOpen} onClose={toggleOverlay}>
+          <div className="pieceDetail">
+            <img src={url} className="pieceDetailImage" />
+          </div>
+        </Overlay>
       </div>
     </li>
   );
