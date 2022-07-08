@@ -3,14 +3,9 @@ import driveData from "./gdrive-data.json";
 import { useEffect, useState } from "react";
 import DisplayPieces from "./components/DisplayPieces";
 import Filters from "./components/DisplayFilters";
-import loading from "./localAssets/loading.gif";
 import { unique } from "./utilityFunctions";
-import { forEach } from "ramda";
 import React from "react";
-const requestOptions = {
-  method: "GET",
-  redirect: "follow",
-};
+
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data
   const [isLoading, setIsLoading] = useState(false); //for loading screens
@@ -89,11 +84,6 @@ function App() {
     dataCategories.push("18+"); //for my website I want mature content to be manually selected before its displayed.
     setAllFilters(dataCategories.filter(unique));
   }
-
-  // console.log("allFilters ", allFilters);
-  // console.log("activeFilters", activeFilters);
-  // console.log("activePieces", activePieces);
-  // console.log("pieceMap", pieceMap);
 
   //we don't need a render function, just return what should render.
   return !isLoading ? ( //implement splash page with local assets to minimize loading.

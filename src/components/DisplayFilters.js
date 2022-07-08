@@ -1,6 +1,7 @@
-import { composeP } from "ramda";
 import React from "react";
 import { useEffect, useState, useRef } from "react";
+import "@blueprintjs/core/lib/css/blueprint.css";
+import { Switch } from "@blueprintjs/core";
 
 function Filters({ activeFilters, allFilters, setActiveFilters }) {
   //checks which filters are active, displays status.
@@ -31,9 +32,6 @@ function Filters({ activeFilters, allFilters, setActiveFilters }) {
     );
 
     function onCheckboxClick(clickedFilter) {
-      console.log(clickedFilter, "working!");
-      console.log(activeStatus, "activeStatus");
-
       let newActiveFilters = activeFilters;
       if (activeStatus) {
         newActiveFilters = newActiveFilters.filter(
@@ -42,36 +40,19 @@ function Filters({ activeFilters, allFilters, setActiveFilters }) {
         setActiveStatus(false);
         setActiveFilters(newActiveFilters);
       } else {
-        console.log(activeFilters);
         setActiveStatus(true);
         setActiveFilters(newActiveFilters.concat([clickedFilter]));
       }
     }
-    return activeStatus ? (
-      <div id={filter}>
-        <label for={filter} className="switch">
-          <h3>{filter}</h3>
-          <input
-            type="checkbox"
-            role="switch"
-            id="switch"
-            defaultChecked
-            onClick={() => onCheckboxClick(filter)}
-          />
-        </label>
-      </div>
-    ) : (
-      <div>
-        <label className="switch">
-          <h3>{filter}</h3>
-          <input
-            type="checkbox"
-            role="switch"
-            id="switch"
-            defaultUnchecked
-            onClick={() => onCheckboxClick(filter)}
-          />
-        </label>
+    // <Switch checked={this.state.isPublic} label="Public" onChange={this.handlePublicChange} />
+    return (
+      <div id={filter} className="filterContainer">
+        <Switch
+          checked={activeStatus}
+          label={filter}
+          onChange={() => onCheckboxClick(filter)}
+          class="bp4-large"
+        />
       </div>
     );
   }
