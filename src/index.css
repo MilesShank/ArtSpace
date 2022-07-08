@@ -15,6 +15,7 @@
   --color3: #7273b9;
   --color4: #362636;
   --color5: #47285c;
+  --color1a: #d4d0e4cc;
   --bgcolor: #45408a;
 }
 .header {
@@ -94,9 +95,39 @@ ul li {
 }
 
 .pieceContainer {
-  position: inline-block;
   margin-left: 20%;
 }
+
+.pieceDetailImage {
+  max-width: 60vw;
+  max-height: 80vh;
+  border: #d4d0e4;
+  border-width: 5px;
+}
+
+.pieceDetailInfo {
+  color: var(--color5);
+  width: max-content;
+  padding-right: 15%;
+}
+
+.pieceDetailInfo li {
+  padding: 15%;
+  list-style: none;
+  text-size-adjust: 30;
+}
+.pieceDetail {
+  position: fixed;
+  display: inline-flex;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: space-around;
+  width: 100vw;
+  height: 85vh;
+  background-color: var(--color1a);
+  padding: 2%;
+}
+
 .feedContainer {
   position: inline-block;
 }

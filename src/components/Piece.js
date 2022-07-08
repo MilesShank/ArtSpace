@@ -1,8 +1,7 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { Button, Overlay } from "@blueprintjs/core";
+import { useState } from "react";
+import { Overlay } from "@blueprintjs/core";
 function Piece({ pieceData, url }) {
-  const [displayPieceModal, setDisplayPieceModal] = useState(false);
   const imgStyle = { backgroundImage: `url(${url})` };
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,7 +31,18 @@ function Piece({ pieceData, url }) {
       <div>
         <Overlay isOpen={isOpen} onClose={toggleOverlay}>
           <div className="pieceDetail">
-            <img src={url} className="pieceDetailImage" />
+            <img
+              src={url}
+              className="pieceDetailImage"
+              alt={pieceData.AltText}
+            />
+            <div className="pieceDetailInfo">
+              <li>{pieceData.Title}</li>
+              <li>{pieceData.Category}</li>
+              <li>{pieceData.Project}</li>
+              <li>{pieceData.DateCreated}</li>
+              <li>{pieceData.MaterialsUsed}</li>
+            </div>
           </div>
         </Overlay>
       </div>
