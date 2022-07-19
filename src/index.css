@@ -99,9 +99,12 @@ ul li {
 }
 
 .pieceDetailImage {
-  max-width: 60vw;
+  max-width: 80vw;
   max-height: 80vh;
-  border: #d4d0e4;
+  width: auto;
+  height: auto;
+  object-fit: scale-down;
+
   border-width: 5px;
 }
 
@@ -114,17 +117,12 @@ ul li {
 .pieceDetailInfo li {
   padding: 15%;
   list-style: none;
-  text-size-adjust: 30;
 }
 .pieceDetail {
-  position: fixed;
-  display: inline-flex;
   margin-top: 5%;
   margin-bottom: 5%;
   justify-content: space-around;
   width: 100vw;
-  height: 85vh;
-  background-color: var(--color1a);
   padding: 2%;
 }
 
@@ -157,12 +155,12 @@ ul li {
   cursor: pointer;
   background-color: var(--color5);
 }
-li:hover .overlay {
+li:hover .feedOverlay {
   display: block;
   opacity: 0.9;
 }
 
-.overlay {
+.feedOverlay {
   display: block;
   background-color: var(--color5);
   color: var(--color1);
@@ -178,7 +176,7 @@ li:hover .overlay {
   text-align: center center;
 }
 
-.overlay h4 {
+.feedoOverlay h4 {
   font-weight: 300;
 }
 
