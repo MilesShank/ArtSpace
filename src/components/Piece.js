@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Overlay } from "@blueprintjs/core";
+import { Overlay, Classes } from "@blueprintjs/core";
 function Piece({ pieceData, url }) {
   const imgStyle = { backgroundImage: `url(${url})` };
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,11 @@ function Piece({ pieceData, url }) {
         </div>
       </div>
       <div>
-        <Overlay isOpen={isOpen} onClose={toggleOverlay}>
+        <Overlay
+          isOpen={isOpen}
+          onClose={toggleOverlay}
+          className={Classes.OVERLAY_SCROLL_CONTAINER}
+        >
           <div className="pieceDetail">
             <img
               src={url}
@@ -37,6 +41,7 @@ function Piece({ pieceData, url }) {
               alt={pieceData.AltText}
             />
             <div className="pieceDetailInfo">
+              <span>{pieceData.Caption}</span>
               <li>{pieceData.Title}</li>
               <li>{pieceData.Category}</li>
               <li>{pieceData.Project}</li>
