@@ -79,6 +79,13 @@ ul li {
   .filterContainer {
     padding-top: 40px;
   }
+  .pieceDetailInfo {
+    color: var(--color5);
+    background-color: var(--color1a);
+    margin: 2%;
+    padding: 5%;
+    display: flex;
+  }
 }
 
 @media (orientation: portrait) {
@@ -99,24 +106,23 @@ ul li {
 }
 
 .pieceDetailImage {
-  max-width: 80vw;
-  max-height: 80vh;
+  max-width: 70vw;
+  max-height: 70vh;
   width: auto;
   height: auto;
   object-fit: scale-down;
-
+  align-self: center;
   border-width: 5px;
 }
 
 .pieceDetailInfo {
   color: var(--color5);
-  width: max-content;
-  padding-right: 15%;
+  background-color: var(--color1a);
+  margin: 5%;
 }
 
 .pieceDetailInfo li {
-  padding: 15%;
-  list-style: none;
+  color: var(--color5);
 }
 .pieceDetail {
   margin-top: 5%;
@@ -165,6 +171,7 @@ li:hover .feedOverlay {
   background-color: var(--color5);
   color: var(--color1);
   position: absolute;
+  align-self: center;
   width: 90%;
   height: 90%;
   opacity: 0;

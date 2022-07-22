@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Overlay, Classes, Button, Drawer } from "@blueprintjs/core";
+import { Overlay, Classes, Button } from "@blueprintjs/core";
 function Piece({ pieceData, url }) {
   const imgStyle = { backgroundImage: `url(${url})` };
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +8,6 @@ function Piece({ pieceData, url }) {
 
   function toggleOverlay() {
     setIsOpen(!isOpen);
-    console.log("toggled overlay");
   }
   function toggleInfo(pieceData) {
     setIsInfoDisplayed(!isInfoDisplayed);
@@ -19,7 +18,6 @@ function Piece({ pieceData, url }) {
     if (!isOpen) {
       toggleOverlay();
     }
-    console.log("handled click");
   }
 
   function displayProject() {
@@ -55,22 +53,26 @@ function Piece({ pieceData, url }) {
               alt={pieceData.AltText}
             />
             <Button onClick={toggleInfo}>Info</Button>
-            {isInfoDisplayed ? <DisplayPieceInfo /> : null}
+            {isInfoDisplayed ? (
+              <DisplayPieceInfo pieceData={pieceData} />
+            ) : null}
           </div>
         </Overlay>
       </div>
     </li>
   );
 
-  function DisplayPieceInfo(pieceData) {
+  function DisplayPieceInfo() {
     return (
       <div className="pieceDetailInfo">
-        <span>{pieceData.Caption}</span>
-        <li>{pieceData.Title}</li>
-        <li>{pieceData.Category}</li>
-        <li>{pieceData.Project}</li>
-        <li>{pieceData.DateCreated}</li>
-        <li>{pieceData.MaterialsUsed}</li>
+        <h6>{pieceData.Title}</h6>
+        <ul>
+          <span>{pieceData.Caption}</span>
+          <li>{pieceData.Category}</li>
+          <li>{pieceData.Project}</li>
+          <li>{pieceData.DateCreated}</li>
+          <li>{pieceData.MaterialsUsed}</li>
+        </ul>
       </div>
     );
   }
