@@ -55,8 +55,11 @@ ul li {
 }
 
 @media (orientation: landscape) {
+  .pieceDetail{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
   .filtersContainer {
-    /* float: left; */
     display: inline-block;
     position: fixed;
     left: 0px;
@@ -79,13 +82,35 @@ ul li {
   .filterContainer {
     padding-top: 40px;
   }
+  .pieceInfoContainer {
+  display:grid;
+  grid-template-rows: 1fr 5fr;
+  }
+  .closeButton{
+    font-size: xx-large !important;
+    padding-left: 1% !important;
+    padding-right: 1% !important;
+  }
+  .infoButton{
+    font-weight: 800;
+    font-size: large !important;
+    margin: 5%;
+  }
   .pieceDetailInfo {
     color: var(--color5);
-    background-color: var(--color1a);
-    margin: 2%;
+    background-color: var(--color1a);;
     padding: 5%;
-    display: flex;
+    margin-left: 5%;
+    margin-right: 5%;
   }
+
+  .pieceImagecontainer {
+    display: grid;
+    position: relative;
+    float: left;
+  }
+
+
 }
 
 @media (orientation: portrait) {
@@ -99,6 +124,11 @@ ul li {
     width: 50%;
     min-width: 100px;
   }
+
+  .pieceDetail{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
 }
 
 .pieceContainer {
@@ -106,8 +136,11 @@ ul li {
 }
 
 .pieceDetailImage {
+  display:grid;
+  position: relative;
+  float: left;
+  max-height: 90vh;
   max-width: 70vw;
-  max-height: 70vh;
   width: auto;
   height: auto;
   object-fit: scale-down;
@@ -118,7 +151,7 @@ ul li {
 .pieceDetailInfo {
   color: var(--color5);
   background-color: var(--color1a);
-  margin: 5%;
+
 }
 
 .pieceDetailInfo li {
@@ -127,8 +160,8 @@ ul li {
 .pieceDetail {
   margin-top: 5%;
   margin-bottom: 5%;
-  justify-content: space-around;
-  width: 100vw;
+  position: relative;
+
   padding: 2%;
 }
 
@@ -183,7 +216,7 @@ li:hover .feedOverlay {
   text-align: center center;
 }
 
-.feedoOverlay h4 {
+.feedOverlay h4 {
   font-weight: 300;
 }
 

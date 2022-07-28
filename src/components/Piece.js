@@ -45,17 +45,25 @@ function Piece({ pieceData, url }) {
           className={Classes.OVERLAY_SCROLL_CONTAINER}
           hasBackdrop={true}
         >
-          <Button onClick={toggleOverlay}>X</Button>
+          <Button className="closeButton" onClick={toggleOverlay}>
+            X
+          </Button>
           <div className="pieceDetail">
-            <img
-              src={url}
-              className="pieceDetailImage"
-              alt={pieceData.AltText}
-            />
-            <Button onClick={toggleInfo}>Info</Button>
-            {isInfoDisplayed ? (
-              <DisplayPieceInfo pieceData={pieceData} />
-            ) : null}
+            <container className="pieceImageContainer">
+              <img
+                src={url}
+                className="pieceDetailImage"
+                alt={pieceData.AltText}
+              />
+            </container>
+            <container className="pieceInfoContainer">
+              <Button className="infoButton" onClick={toggleInfo}>
+                Info
+              </Button>
+              {isInfoDisplayed ? (
+                <DisplayPieceInfo pieceData={pieceData} />
+              ) : null}
+            </container>
           </div>
         </Overlay>
       </div>
