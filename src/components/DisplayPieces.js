@@ -3,18 +3,21 @@ import Piece from "./Piece";
 
 const DisplayPieces = (props) => {
   const gDriveImgLink = "https://drive.google.com/uc?id=";
+  //   const [showDetail, setShowDetail] = useState(null);
 
-  const displayImages = () => {
+  function displayImages() {
     return props.pieceMap.map((piece) => {
-      var imgKey = piece.get("ImgKey");
-      return <Piece url={gDriveImgLink + imgKey} title={piece.get("Title")} />;
+      var imgKey = piece.ImgKey;
+      return (
+        <Piece url={gDriveImgLink + imgKey} pieceData={piece} key={piece.Key} />
+      );
     });
-  };
+  }
 
   return (
-    <div>
-      DisplayPieces rendered
-      {displayImages()}
+    <div className="feedContainer">
+      {" "}
+      <ul className="pieceContainer">{displayImages()}</ul>{" "}
     </div>
   );
 };
