@@ -1,4 +1,3 @@
-import "./App.css";
 import driveData from "./gdrive-data.json";
 import { useEffect, useState } from "react";
 import DisplayPieces from "./components/DisplayPieces";

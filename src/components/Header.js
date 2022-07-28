@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { About } from "./About.js";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className="header">
