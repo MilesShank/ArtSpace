@@ -1,0 +1,16 @@
+:root {
+    --color1: #d4d0e4;
+    --color2: #b3a6e7;
+    --color3: #7273b9;
+    --color4: #362636;
+    --color5: #47285c;
+    --color1a: #d4d0e4cc;
+    --bgcolor: #45408a;
+  }
+.aboutTextContainer{
+display:grid;
+padding:5%;
+margin:2%;
+margin-left: 10%;
+background-color: var(--color1a);
+}

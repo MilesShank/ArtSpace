@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import About from "./components/About";
-import Projects from "./routes/Projects";
+import Projects from "./components/Projects";
 import Header from "./components/Header";
 import reportWebVitals from "./reportWebVitals";
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../header.css";
 const Header = () => {
   return (
     <div className="header">
@@ -10,18 +11,18 @@ const Header = () => {
           </div>
         </div>
         <div class="bp4-navbar-group bp4-align-center">
-          <button class="bp4-button bp4-minimal">
-            <Link to="/">Home</Link>
-          </button>
-          <button class="bp4-button bp4-minimal">
-            <Link to="/Projects">Projects</Link>
-          </button>
-          <button class="bp4-button bp4-minimal">
-            <Link to="/About">About</Link>
-          </button>
-          <button class="bp4-button bp4-minimal">
-            <Link to="/Shop">Shop</Link>
-          </button>
+          <Link to="/">
+            <button class="bp4-button bp4-minimal">Home</button>
+          </Link>
+          <Link to="/Projects">
+            <button class="bp4-button bp4-minimal">Projects</button>
+          </Link>
+          <Link to="/About">
+            <button class="bp4-button bp4-minimal">About</button>
+          </Link>
+          <Link to="/Shop">
+            <button class="bp4-button bp4-minimal">Shop</button>
+          </Link>
         </div>
       </nav>
     </div>
