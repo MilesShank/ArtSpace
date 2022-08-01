@@ -5,14 +5,6 @@ import { Switch } from "@blueprintjs/core";
 
 function Filters({ activeFilters, allFilters, setActiveFilters }) {
   //checks which filters are active, displays status.
-  // function handleClick(filter) {
-  //   console.log(filter);
-  // }
-  // React.useEffect(() => {
-  //   window.addEventListener("keydown", (event) => {
-  //     console.log("h");
-  //   });
-  // }, []);
 
   function displayFilters() {
     return allFilters.map((filter) => {

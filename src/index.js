@@ -7,7 +7,6 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import Header from "./components/Header";
 import reportWebVitals from "./reportWebVitals";
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -16,7 +15,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="projects" element={<Projects />} />
-        <Route path="About" element={<About />} />
+        <Route path="About/" element={<About />}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

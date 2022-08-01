@@ -1,18 +1,30 @@
 import React from "react";
 import { useState } from "react";
-import { Button } from "@blueprintjs/core";
+import { Button, Tab, Tabs } from "@blueprintjs/core";
+import { Link } from "react-router-dom";
 import AboutPersonal from "./AboutTextPersonal";
+import AboutProfessional from "./AboutTextProfessional";
 
 function About() {
   return (
     <div className="aboutContainer">
       <div className="aboutTypeContainer">
-        <button>Personal</button>
-        <button>For the Recruiters</button>
+        <container className="aboutTextContainer">
+          <Tabs animate={true} key={"vertical"} vertical={false}>
+            <Tab id="PersonalTab" title="Personal" panel={<AboutPersonal />} />
+            <Tab
+              id="ProfessionalTab"
+              title="Professional"
+              panel={<AboutProfessional />}
+            />
+            <Tab
+              id="SkillsTab"
+              title="Skill Stack"
+              panel={<p>I write code and draw good</p>}
+            />
+          </Tabs>
+        </container>
       </div>
-      <container className="aboutTextContainer">
-        <AboutPersonal />
-      </container>
     </div>
   );
 }
