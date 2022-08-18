@@ -7,3 +7,9 @@
     --color1a: #d4d0e4cc;
     --bgcolor: #45408a;
   }
+.aboutTextContainer{
+    display:grid;
+    padding:5%;
+    margin:2%;
+    background-color: var(--color1a);
+    }

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button, Tab, Tabs } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
+import "../about.css";
 import AboutPersonal from "./AboutTextPersonal";
 import AboutProfessional from "./AboutTextProfessional";
 

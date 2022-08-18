@@ -15,7 +15,7 @@ function App() {
     //this works in place of the previous ComponentDidMount() function
     setIsLoading(true);
     fetch(
-      "https://sheets.googleapis.com/v4/spreadsheets/1o41jm0d7qFoIJP8QEC8U70q6rvdLO2RSRnjyLOiy_qk/values/Sheet1" +
+      "https://sheets.googleapis.com/v4/spreadsheets/1o41jm0d7qFoIJP8QEC8U70q6rvdLO2RSRnjyLOiy_qk/values/PieceData" +
         "?key=" +
         driveData.gkey
     )
