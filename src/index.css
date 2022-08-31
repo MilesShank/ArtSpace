@@ -1,33 +1,29 @@
 
-/* og questionable color palette
-   --color1: #e4ded0;
-  --color2: #df9b43;
-  --color3: #6cc2ab;
-  --color4: #362636;
-  --color5: #a5284b;
-  --bgcolor: #dbcca9; */
+
 :root {
-  --color1: #d4d0e4;
-  --color2: #b3a6e7;
-  --color3: #7273b9;
-  --color4: #362636;
-  --color5: #47285c;
-  --color1a: #d4d0e4cc;
-  --bgcolor: #45408a;
+  --color1: #dcf0ee;
+  --color2: #a9d9d7;
+  --color3: #c6e7e2;
+  --color4: #6dc8bf;
+  --color5: #127f46;
+  --color1a: #E6F4F1cc;
 }
+
 .header {
+  display:grid;
   z-index: 1;
-  display: block;
-  position: sticky;
-  min-block-size: 10ch;
-  border-bottom: 1rem double var(--color1);
-  background-color: var(--color3);
 }
+.feedContainer {
+  display: grid;
+}
+
 body {
-  background-color: var(--bgcolor);
+  display:grid;
+  grid-template-rows: 1fr 4fr;
+  background-image: linear-gradient(to right, white, black);
   color: var(--color4);
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: Eras light ITC, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -38,185 +34,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-ul {
-  list-style: none;
-  width: 75%;
-  margin-left: 20%;
-}
 
-ul li {
-  position: relative;
-  display: inline-block;
-  width: 25%;
-  min-width: 200px;
-}
-
-@media (orientation: landscape) {
-  .pieceDetail{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .filtersContainer {
-    display: inline-block;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: fit-content;
-    height: 100%;
-    padding: 1%;
-    padding-top: 10ch;
-    background-color: var(--color3);
-    color: var(--color5);
-  }
-
-  ul li {
-    position: relative;
-    display: inline-block;
-    width: 30%;
-    min-width: 300px;
-  }
-
-  .filterContainer {
-    padding-top: 40px;
-  }
-  .pieceInfoContainer {
-  display:grid;
-  grid-template-rows: 1fr 5fr;
-  }
-  .closeButton{
-    font-size: xx-large !important;
-    padding-left: 1% !important;
-    padding-right: 1% !important;
-  }
-  .infoButton{
-    font-weight: 800;
-    font-size: large !important;
-    margin: 5%;
-  }
-  .pieceDetailInfo {
-    color: var(--color5);
-    background-color: var(--color1a);;
-    padding: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-
-  .pieceImagecontainer {
-    display: grid;
-    position: relative;
-    float: left;
-  }
-
-
-}
-
-@media (orientation: portrait) {
-  .filtersContainer {
-    display: none;
-  }
-
-  ul li {
-    position: relative;
-    display: inline-block;
-    width: 50%;
-    min-width: 100px;
-  }
-
-  .pieceDetail{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-  }
-}
-
-.pieceContainer {
-  margin-left: 20%;
-}
-
-.pieceDetailImage {
-  display:grid;
-  position: relative;
-  float: left;
-  max-height: 90vh;
-  max-width: 70vw;
-  width: auto;
-  height: auto;
-  object-fit: scale-down;
-  align-self: center;
-  border-width: 5px;
-}
-
-.pieceDetailInfo {
-  color: var(--color5);
-  background-color: var(--color1a);
-
-}
-
-.pieceDetailInfo li {
-  color: var(--color5);
-}
-.pieceDetail {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  position: relative;
-
-  padding: 2%;
-}
-
-.feedContainer {
-  position: inline-block;
-}
-.imageGridItem {
-  background-color: var(--color2);
-  display: block;
-  box-sizing: border-box;
-  padding: 5%;
-  margin: 5%;
-  overflow: hidden;
-  position: auto;
-  transition: all 0.5s linear;
-  transition-delay: 0.1s;
-  text-align: center;
-}
-
-.imageWrapper {
-  display: block;
-  width: auto;
-  height: auto;
-  padding-bottom: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  transition: all 0.5s linear;
-
-  cursor: pointer;
-  background-color: var(--color5);
-}
-li:hover .feedOverlay {
-  display: block;
-  opacity: 0.9;
-}
-
-.feedOverlay {
-  display: block;
-  background-color: var(--color5);
-  color: var(--color1);
-  position: absolute;
-  align-self: center;
-  width: 90%;
-  height: 90%;
-  opacity: 0;
-  top: 5%;
-  left: 5%;
-  padding-top: 25%;
-  transition: 0.5s ease;
-  cursor: pointer;
-  text-align: center center;
-}
-
-.feedOverlay h4 {
-  font-weight: 300;
-}
-
-.switch {
-  padding: 3%;
+.App {
+  margin-top:230px;
+display:grid;
+grid-template-rows: 1fr 5fr;
 }

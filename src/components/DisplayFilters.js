@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState, useRef } from "react";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import { Switch } from "@blueprintjs/core";
+import "../filters.css";
 
 function Filters({ activeFilters, allFilters, setActiveFilters }) {
   //checks which filters are active, displays status.

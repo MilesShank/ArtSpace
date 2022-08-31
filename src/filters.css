@@ -1,0 +1,21 @@
+.filtersContainer {
+    display: grid;
+    position: fixed;
+    right: 5%;
+    top: 40%;
+    border-radius: 2px;
+    width: fit-content;
+    height: 60%;
+    padding: 1%;
+
+    background-color: var(--color3);
+    color: var(--color5);
+  }
+  .filterContainer {
+    padding-top: 60px;
+  }
+
+  .switch {
+    padding: 3%;
+  }
+  

@@ -4,6 +4,7 @@ import DisplayPieces from "./components/DisplayPieces";
 import Filters from "./components/DisplayFilters";
 import { unique } from "./utilityFunctions";
 import React from "react";
+import "./pieceFeed.css";
 
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data

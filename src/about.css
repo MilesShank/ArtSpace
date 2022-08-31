@@ -1,12 +1,11 @@
 :root {
-    --color1: #d4d0e4;
-    --color2: #b3a6e7;
-    --color3: #7273b9;
-    --color4: #362636;
-    --color5: #47285c;
-    --color1a: #d4d0e4cc;
-    --bgcolor: #45408a;
-  }
+  --color1: #dcf0ee;
+  --color2: #a9d9d7;
+  --color3: #c6e7e2;
+  --color4: #6dc8bf;
+  --color5: #127f46;
+  --color1a: #E6F4F1cc;
+}
 .aboutTextContainer{
     display:grid;
     padding:5%;
