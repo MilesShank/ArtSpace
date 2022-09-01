@@ -1,29 +1,24 @@
-
-
 :root {
   --color1: #dcf0ee;
   --color2: #a9d9d7;
   --color3: #c6e7e2;
   --color4: #6dc8bf;
-  --color5: #127f46;
+  --color5: #00a0a8;
   --color1a: #E6F4F1cc;
 }
 
 .header {
-  display:grid;
+  position:absolute;
+  grid-row: 1/  1;
   z-index: 1;
 }
-.feedContainer {
-  display: grid;
-}
+
 
 body {
-  display:grid;
-  grid-template-rows: 1fr 4fr;
   background-image: linear-gradient(to right, white, black);
   color: var(--color4);
   margin: 0;
-  font-family: Eras light ITC, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: "Eras light ITC", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,8 +30,28 @@ code {
     monospace;
 }
 
-.App {
-  margin-top:230px;
-display:grid;
-grid-template-rows: 1fr 5fr;
+
+@media (orientation: landscape) {
+  .App {
+    position:static;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 9fr;
+    }
+    .feedContainer {
+      grid-row: 2 / 2;
+    }
+}
+
+@media (orientation: portrait) {
+  .App {
+    position:static;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 5fr;
+
+    }
+    .feedContainer {
+      grid-row: 3 / 1;
+    }
 }

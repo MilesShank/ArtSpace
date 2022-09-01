@@ -5,6 +5,7 @@ import Filters from "./components/DisplayFilters";
 import { unique } from "./utilityFunctions";
 import React from "react";
 import "./pieceFeed.css";
+import Header from "./components/Header";
 
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data
@@ -89,12 +90,13 @@ function App() {
   return !isLoading ? ( //implement splash page with local assets to minimize loading.
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
-      <DisplayPieces pieceMap={activePieces} />
+      <Header />
       <Filters
         allFilters={allFilters}
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
       />
+      <DisplayPieces pieceMap={activePieces} />
     </div>
   ) : (
     //we're gunna need to prolly skeleton load inside displayPieces

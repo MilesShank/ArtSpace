@@ -82,7 +82,8 @@
   }
   
 .pieceContainer {
-    margin-right: 250px;
+    display:flexbox;
+    margin-right: 25%;
   }
   
   .pieceDetailImage {

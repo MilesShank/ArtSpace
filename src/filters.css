@@ -1,4 +1,5 @@
-.filtersContainer {
+@media (orientation: landscape) {
+    .filtersContainer {
     display: grid;
     position: fixed;
     right: 5%;
@@ -14,6 +15,27 @@
   .filterContainer {
     padding-top: 60px;
   }
+
+
+  }
+  
+  @media (orientation: portrait) {
+    .filtersContainer {
+        display: grid;
+        position: relative;
+        border-radius: 2px;
+        width: 100%;
+
+        grid-row: 2 / 1;
+
+        background-color: var(--color3);
+        color: var(--color5);
+      }
+      .filterContainer {
+        margin: 0px;
+      }
+  }
+
 
   .switch {
     padding: 3%;
