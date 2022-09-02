@@ -6,9 +6,24 @@
   --color5: #00a0a8;
   --color1a: #E6F4F1cc;
 }
+
+.aboutContainer{
+  display:grid;
+  grid-template-rows: 230px 4fr;
+
+}
+
+.aboutTypeContainer{
+    background-color: var(--color1a);
+
+  padding:2%;
+  padding-left: 3%;
+  grid-row: 2;   
+  border-color: var(--color4);
+  border-width: 2px;
+  border-style: solid;
+}
 .aboutTextContainer{
     display:grid;
-    padding:5%;
-    margin:2%;
-    background-color: var(--color1a);
+
     }

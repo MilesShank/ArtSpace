@@ -48,10 +48,10 @@ code {
     position:static;
     display:grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 5fr;
+    grid-template-rows: 5.5fr 1fr;
 
     }
     .feedContainer {
-      grid-row: 3 / 1;
+      grid-row: 3 ;
     }
 }

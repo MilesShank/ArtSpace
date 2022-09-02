@@ -40,7 +40,8 @@ padding-top: 15px;
 .minitext{
   font-size: small;
   text-align:left;
-  line-height: 40%;
+  line-height: 45%;
+  padding-bottom: 3px;;
 }
 .author{
   padding-left: 1%;
