@@ -16,9 +16,24 @@
     padding-top: 60px;
   }
 
-
   }
   
+.filterBox{
+    display:hidden;
+}
+
+.filterLabel {
+	display: inline-block;	
+	width: 60px;
+	height: 60px;
+	cursor: pointer;	
+	background-image: url("/src/localAssets/1x/unchecked.png");
+    background-size:contain;
+}
+
+.filterBox:checked + .filterLabel{
+	background-image: url("/src/localAssets/1x/checked.png");
+}
   @media (orientation: portrait) {
     .filtersContainer {
         display: grid;

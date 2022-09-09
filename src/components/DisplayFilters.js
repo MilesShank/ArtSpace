@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState, useRef } from "react";
 import "@blueprintjs/core/lib/css/blueprint.css";
-import { Switch } from "@blueprintjs/core";
 import "../filters.css";
 
 function Filters({ activeFilters, allFilters, setActiveFilters }) {
@@ -40,12 +39,16 @@ function Filters({ activeFilters, allFilters, setActiveFilters }) {
     // <Switch checked={this.state.isPublic} label="Public" onChange={this.handlePublicChange} />
     return (
       <div id={filter} className="filterContainer">
-        <Switch
+        <input
+          type="checkbox"
           checked={activeStatus}
           label={filter}
           onChange={() => onCheckboxClick(filter)}
           class="bp4-large"
+          className="filterBox"
         />
+        <label className="filterLabel" for="filterBox"></label>
+        {filter}
       </div>
     );
   }

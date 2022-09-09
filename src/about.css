@@ -19,9 +19,9 @@
   padding:2%;
   padding-left: 3%;
   grid-row: 2;   
-  border-color: var(--color4);
-  border-width: 2px;
-  border-style: solid;
+  border-top-color: var(--color4);
+  border-top-width: 2px;
+  border-top-style: solid;
 }
 .aboutTextContainer{
     display:grid;
