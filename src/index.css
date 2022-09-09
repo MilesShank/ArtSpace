@@ -40,6 +40,7 @@ code {
     }
     .feedContainer {
       grid-row: 2 / 2;
+      min-height: 700px;
     }
 }
 
