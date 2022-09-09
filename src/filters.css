@@ -13,7 +13,7 @@
     color: var(--color5);
   }
   .filterContainer {
-    padding-top: 60px;
+    padding-top: 20px;
   }
 
   }
@@ -24,15 +24,18 @@
 
 .filterLabel {
 	display: inline-block;	
-	width: 60px;
-	height: 60px;
+	max-width: 40px;
+	max-height: 40px;
 	cursor: pointer;	
 	background-image: url("/src/localAssets/1x/unchecked.png");
     background-size:contain;
+    background-repeat: no-repeat;
 }
 
 .filterBox:checked + .filterLabel{
 	background-image: url("/src/localAssets/1x/checked.png");
+    background-size:contain;
+    background-repeat: no-repeat;
 }
   @media (orientation: portrait) {
     .filtersContainer {
@@ -57,4 +60,6 @@
   .switch {
     padding: 3%;
   }
+  
+
   
