@@ -6,6 +6,7 @@
     --color4: #6dc8bf;
     --color5: #00a0a8;
     --color1a: #E6F4F1cc;
+    --color6: #085d62;
   }
 
 
@@ -84,3 +85,15 @@ nav{
   align-content: space-around;
 }
 
+.navlinks a{
+  font-size: medium;
+  padding-left: 5%;
+}
+
+.bp4-button.bp4-minimal{
+  color: var(--color5)
+}
+
+.bp4-button.bp4-minimal:hover{
+  color: var(--color6)
+}

@@ -15,7 +15,7 @@
 
 
 body {
-  background-image: linear-gradient(to right, white, black);
+  background-image: linear-gradient(to right, white, var(--color4));
   color: var(--color4);
   margin: 0;
   font-family: "Eras light ITC", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

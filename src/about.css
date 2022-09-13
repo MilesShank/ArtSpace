@@ -20,8 +20,11 @@
   padding-left: 3%;
   grid-row: 2;   
   border-top-color: var(--color4);
+  border-bottom-color: var(--color4);
   border-top-width: 2px;
+  border-bottom-width: 2px;
   border-top-style: solid;
+  border-bottom-style:solid;
 }
 .aboutTextContainer{
     display:grid;
