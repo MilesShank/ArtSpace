@@ -50,7 +50,7 @@ function Filters({ activeFilters, allFilters, setActiveFilters }) {
           className="filterBox"
         />
         <label className="filterLabel" for={filter}>
-          {filter + "label"}
+          <text>{filter}</text>
         </label>
       </div>
     );

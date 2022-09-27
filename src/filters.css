@@ -3,28 +3,43 @@
     display: grid;
     position: fixed;
     right: 5%;
-    top: 40%;
+    top: 35%;
+    padding: 2%;
     border-radius: 2px;
     width: fit-content;
     height: 60%;
-    padding: 4%;
-    border-color: var(--color4);
+    margin-bottom: 70px;
+    /* border-color: var(--color4);
+    border-width: 2px;
+    border-style: solid; */
     
 
     background-color: var(--color3);
     color: var(--color5);
   }
   .filterContainer {
-    padding-top: 20px;
+    margin-right: 40px;
+    margin-top: 30px;
+    margin-bottom: 60%;
+    width: 100%;
+    margin-left: 5%;
+    padding: 5px;
+    padding-right: 25px;
+    padding-left:25px;
+    border-color: var(--color5);
+    border-width: 2px;
+    border-style: solid;
+    
+    background-color: var(--color1);
   }
   text{
-    padding:20%;
+    padding:30px;
 
   }
   }
   
 .filterBox{
-    display:hidden;
+    display:none;
 }
 
 .filterLabel {
