@@ -7,10 +7,31 @@
   --color1a: #E6F4F1cc;
 }
 
+@media (orientation: landscape) {
 .aboutContainer{
   display:grid;
-  grid-template-rows: 230px 4fr;
+  grid-template-rows: 250px 4fr;
+  }
 
+  .aboutTypeContainer{
+    margin-top: 10px;
+  }
+}
+@media (orientation: portrait) {
+
+.aboutContainer{
+  display:grid;
+  grid-template-rows: 200px 4fr;
+}
+}
+
+.aboutTextContainer .bp4-tab{
+color: var(--color5) ;
+font-weight: 600;
+}
+
+.aboutTextContainer .bp4-tab-indicator-wrapper .bp4-tab-indicator{
+background-color: var(--color5);
 }
 
 .aboutTypeContainer{
@@ -28,5 +49,8 @@
 }
 .aboutTextContainer{
     display:grid;
-
+    color: var(--color6);
+    padding: 5%;
+    padding-top: 0%;
+    font-weight: 500;
     }

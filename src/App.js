@@ -43,7 +43,7 @@ function App() {
   const activePieces = React.useMemo(() => {
     console.log("ActivePieces triggered");
     if (pieceMap) {
-      if (activeFilters.includes("18+")) {
+      if (activeFilters.includes("Nudity")) {
         return pieceMap.filter((piece) =>
           activeFilters.includes(piece.Category)
         );
@@ -82,7 +82,7 @@ function App() {
 
   function sortFilterData(dataCategories) {
     setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category fiters actve.
-    dataCategories.push("18+"); //for my website I want mature content to be manually selected before its displayed.
+    dataCategories.push("Nudity"); //for my website I want mature content to be manually selected before its displayed.
     setAllFilters(dataCategories.filter(unique));
   }
 
@@ -97,6 +97,11 @@ function App() {
         setActiveFilters={setActiveFilters}
       />
       <DisplayPieces pieceMap={activePieces} />
+      <div
+        id="background-img"
+        class="background-img"
+        alt="outlines of gingko leaves rest in the lower right corner of the screen"
+      ></div>
     </div>
   ) : (
     //we're gunna need to prolly skeleton load inside displayPieces

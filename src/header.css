@@ -23,7 +23,7 @@
 } 
 
 .logo{
-max-height:160px;
+max-height:200px;
 padding-left: 10%;
 padding-right: 10%;
 grid-row: 1 / 2;
@@ -42,7 +42,7 @@ padding-top: 15px;
   font-size: small;
   text-align:left;
   line-height: 45%;
-  padding-bottom: 7px;;
+  padding-bottom: 1%;
 }
 .author{
   padding-left: 1%;
@@ -71,16 +71,15 @@ a:visited {
 .header h1{
   padding-left: 3%;
   padding-top: 3%;
-  grid-column: 1 3;
-  grid-row: 1 1;
+  /* grid-column: 1 3; */
+  /* grid-row: 1 1; */
 }
 
 nav{
+  display:grid;
   border-top: 10px solid  var(--color3);
-  grid-row-start:3;
   background-color: var(--color1);
   height:100%;
-  grid-row: 2 1;
   grid-column: 1 / 4;
   align-content: space-around;
 }

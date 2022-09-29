@@ -24,65 +24,31 @@
 
 
   @media (orientation: landscape) {
-    .pieceDetail{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-  
+
     ul li {
       position: relative;
       display: inline-block;
       width: 25%;
-      /* min-width: 300px; */
+
     }
   
-    .pieceInfoContainer {
-    display:grid;
-    grid-template-rows: 1fr 5fr;
+    .pieceContainer{
+      margin: 15px;
+      height:fit-content;
+
     }
-    .closeButton{
-      font-size: xx-large !important;
-      padding-left: 1% !important;
-      padding-right: 1% !important;
-    }
-    .infoButton{
-      font-weight: 800;
-      font-size: large !important;
-      margin: 5%;
-    }
-    .pieceDetailInfo {
-      color: var(--color5);
-      background-color: var(--color1a);;
-      padding: 5%;
-      margin-left: 5%;
-      margin-right: 5%;
-    }
-  
-    .pieceImagecontainer {
+   
+     .pieceImagecontainer {
       display: grid;
       position: relative;
       float: left;
-    }
+    } 
   
   }
 
-  @media (orientation: portrait) {
-
-    ul li {
-      position: relative;
-      display: inline-block;
-      width: 50%;
-      min-width: 100px;
-    }
-  
-    .pieceDetail{
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-    }
-  }
   
 .pieceContainer {
-    display:flexbox;
+
     margin-right: 25%;
   }
   
@@ -114,14 +80,11 @@
     padding: 1%;
   }
   
-  .feedContainer {
-    position: inline-block;
-  }
+ 
   .imageGridItem {
     display: block;
     box-sizing: border-box;
     overflow: hidden;
-    position: auto;
     transition: all 0.5s linear;
     transition-delay: 0.1s;
     text-align: center;
@@ -145,8 +108,9 @@
     display: block;
     opacity: 0.9;
     background-color: var(--color3);
-    color:black;
+    color:var(--color6);
     padding-top:20%;
+    font-size: large;
   }
   
   .feedOverlay {
@@ -164,7 +128,6 @@
     padding-top: 25%;
     transition: 0.5s ease;
     cursor: pointer;
-    text-align: center center;
   }
   
   .feedOverlay h4 {

@@ -5,6 +5,7 @@
   --color4: #6dc8bf;
   --color5: #00a0a8;
   --color1a: #E6F4F1cc;
+  --color5a: #00a0a896;
 }
 
 .header {
@@ -25,6 +26,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.background-img{
+  background:url('./localAssets/1x/2x/Asset\ 1@2x.png');
+  width:40%;
+  height:50%; 
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -36,7 +48,7 @@ code {
     position:static;
     display:grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 3fr 9fr;
+    grid-template-rows: 350px auto;
     }
     .feedContainer {
       grid-row: 2 / 2;
@@ -49,7 +61,7 @@ code {
     position:static;
     display:grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 5.5fr 1fr;
+    grid-template-rows: 4fr 1fr;
 
     }
     .feedContainer {

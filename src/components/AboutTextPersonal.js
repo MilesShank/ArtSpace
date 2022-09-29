@@ -10,19 +10,18 @@ function AboutPersonal() {
         respond to the situation, as parents of toddlers often do. I looked up
         at her, pointed at my creation and said:{" "}
       </p>
-      <p>"It's a love thing. I made it for you."</p>
       <p>
+        <b>"It's a love thing. I made it for you."</b>
+      </p>
+      <p>My mother, a woman of impressive tolerance and tact, said:</p>
+      <p>
+        <b>"Thank you, it's beautiful."</b> <br />
         <br />
-        My mother, a woman of impressive tolerance and tact, said:
       </p>
       <p>
-        "Thank you, it's beautiful." <br />
-        <br />
-      </p>
-      <p>
-        Ever since, I have created as an expression of love, though I'm happy to
-        say I've developed better mediums for communicating sentiment than
-        destroying peoples flower beds.&nbsp;
+        All my life, I have created as an expression of love, though I'm happy
+        to say I've developed methods of self-expression that are significantly
+        more successful than destroying other peoples' flower beds.&nbsp;
       </p>
       <p>
         Music, drawing, painting, sculpting, they are gifts for connecting with

@@ -37,7 +37,6 @@ function Filters({ activeFilters, allFilters, setActiveFilters }) {
         setActiveFilters(newActiveFilters.concat([clickedFilter]));
       }
     }
-    // <Switch checked={this.state.isPublic} label="Public" onChange={this.handlePublicChange} />
     return (
       <div id={filter + "div"} className="filterContainer">
         <input
@@ -55,7 +54,12 @@ function Filters({ activeFilters, allFilters, setActiveFilters }) {
       </div>
     );
   }
-  return <section className="filtersContainer">{displayFilters()}</section>;
+  return (
+    <section className="filtersContainer">
+      <text className="filterTitle">Filters</text>
+      {displayFilters()}
+    </section>
+  );
 }
 
 export default Filters;
