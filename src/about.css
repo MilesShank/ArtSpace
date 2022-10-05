@@ -16,6 +16,7 @@
   .aboutTypeContainer{
     margin-top: 10px;
   }
+
 }
 @media (orientation: portrait) {
 
@@ -23,6 +24,7 @@
   display:grid;
   grid-template-rows: 200px 4fr;
 }
+
 }
 
 .aboutTextContainer .bp4-tab{
@@ -54,3 +56,19 @@ background-color: var(--color5);
     padding-top: 0%;
     font-weight: 500;
     }
+.aboutPersonal ul li{
+  list-style-type: circle;
+  font-size: medium;
+  padding: 1%
+}
+
+.aboutPersonal h3{
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 3px;
+  padding-bottom: 1%;
+  border-color: var(--color2);
+  border-style: solid;
+  color: var(--color6)
+}

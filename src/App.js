@@ -97,11 +97,6 @@ function App() {
         setActiveFilters={setActiveFilters}
       />
       <DisplayPieces pieceMap={activePieces} />
-      <div
-        id="background-img"
-        class="background-img"
-        alt="outlines of gingko leaves rest in the lower right corner of the screen"
-      ></div>
     </div>
   ) : (
     //we're gunna need to prolly skeleton load inside displayPieces

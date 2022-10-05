@@ -5,9 +5,8 @@ function AboutProfessional() {
       {" "}
       <p> Hello, I'm Miles. It's nice to meet you. </p>
       <p>
-        I'm a Web Developer, designer, and artist. I love using code to solve
-        problems, and also to create meaningful, unique, and/or silly art
-        projects.{" "}
+        I'm a Web Developer, designer, and artist. I use code to solve problems,
+        and also to create meaningful, unique, and/or silly art projects.{" "}
       </p>
       <p>
         In 2018 I was a recent college graduate, and was hired to work on a

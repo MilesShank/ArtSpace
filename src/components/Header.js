@@ -19,10 +19,39 @@ const Header = () => {
         </h1>
       </Link>{" "}
       <span class="sm_icon_container">
-        <img class="sm_icon" src={gitlogo} />
-        <img class="sm_icon" src={lnlogo} />
-        <img class="sm_icon" src={twitlogo} />
-        <img class="sm_icon" src={instalogo} />
+        <a
+          href="https://github.com/MilesShank"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img class="sm_icon" src={gitlogo} alt="Github Logo" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/miles-shank/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {" "}
+          <img class="sm_icon" src={lnlogo} alt="Linkedin Logo" />{" "}
+        </a>
+
+        <a
+          href="https://www.instagram.com/doubleclickprince"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {" "}
+          <img class="sm_icon" src={instalogo} alt="Instagram Logo" />
+        </a>
+        {/* At the Moment we're not linking twitter */}
+        {/* <a
+          href="https://github.com/MilesShank"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {" "}
+          <img class="sm_icon" src={twitlogo} alt="Twitter Logo" />{" "}
+        </a> */}
       </span>
       <nav>
         <span class="navlinks">

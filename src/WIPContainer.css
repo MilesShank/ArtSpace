@@ -1,0 +1,20 @@
+.WIPContainer{
+    display:grid;
+    grid-template-rows: 200px 4fr;
+padding: 35%;
+    color: var(--color6);
+    font-size:xx-large;
+    background-color: var(--color1a);
+padding: 5%;
+  padding-left: 2%;
+padding-left: 3%;
+padding-top: 35vh;
+grid-row: 2;
+border-top-color: var(--color4);
+border-bottom-color: var(--color4);
+border-top-width: 2px;
+border-bottom-width: 2px;
+border-top-style: solid;
+border-bottom-style: solid;
+  }
+  
