@@ -1,0 +1,12 @@
+@media (orientation: landscape) {
+    .HomeFeed{
+    margin-top: 20%;
+    }
+  
+  }
+  
+  @media (orientation: portrait) {
+    .HomeFeed {
+        margin-top: 165px;
+      }
+    }

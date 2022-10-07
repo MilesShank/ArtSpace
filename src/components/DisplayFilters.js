@@ -1,18 +1,11 @@
 import React from "react";
 import { useEffect, useState, useRef } from "react";
 import "@blueprintjs/core/lib/css/blueprint.css";
-import { Switch } from "@blueprintjs/core";
+
+import "../filters.css";
 
 function Filters({ activeFilters, allFilters, setActiveFilters }) {
   //checks which filters are active, displays status.
-  // function handleClick(filter) {
-  //   console.log(filter);
-  // }
-  // React.useEffect(() => {
-  //   window.addEventListener("keydown", (event) => {
-  //     console.log("h");
-  //   });
-  // }, []);
 
   function displayFilters() {
     return allFilters.map((filter) => {
@@ -44,19 +37,29 @@ function Filters({ activeFilters, allFilters, setActiveFilters }) {
         setActiveFilters(newActiveFilters.concat([clickedFilter]));
       }
     }
-    // <Switch checked={this.state.isPublic} label="Public" onChange={this.handlePublicChange} />
     return (
-      <div id={filter} className="filterContainer">
-        <Switch
+      <div id={filter + "div"} className="filterContainer">
+        <input
+          id={filter}
+          type="checkbox"
           checked={activeStatus}
           label={filter}
           onChange={() => onCheckboxClick(filter)}
           class="bp4-large"
+          className="filterBox"
         />
+        <label className="filterLabel" for={filter}>
+          <text>{filter}</text>
+        </label>
       </div>
     );
   }
-  return <section className="filtersContainer">{displayFilters()}</section>;
+  return (
+    <section className="filtersContainer">
+      <text className="filterTitle">Filters</text>
+      {displayFilters()}
+    </section>
+  );
 }
 
 export default Filters;

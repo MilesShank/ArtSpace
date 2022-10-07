@@ -1,11 +1,14 @@
-import "./App.css";
 import driveData from "./gdrive-data.json";
 import { useEffect, useState } from "react";
-import DisplayPieces from "./components/DisplayPieces";
-import Filters from "./components/DisplayFilters";
 import { unique } from "./utilityFunctions";
 import React from "react";
-
+import "./pieceFeed.css";
+import Header from "./components/Header";
+import About from "./components/About";
+import Projects from "./components/Projects";
+import WIPContainer from "./components/WipAlert";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomeFeed from "./components/HomeFeed";
 function App() {
   const [pieceMap, setPieceMap] = useState(null); //where we'll store all pieces as formatted data
   const [isLoading, setIsLoading] = useState(false); //for loading screens
@@ -16,7 +19,7 @@ function App() {
     //this works in place of the previous ComponentDidMount() function
     setIsLoading(true);
     fetch(
-      "https://sheets.googleapis.com/v4/spreadsheets/1o41jm0d7qFoIJP8QEC8U70q6rvdLO2RSRnjyLOiy_qk/values/Sheet1" +
+      "https://sheets.googleapis.com/v4/spreadsheets/1o41jm0d7qFoIJP8QEC8U70q6rvdLO2RSRnjyLOiy_qk/values/PieceData" +
         "?key=" +
         driveData.gkey
     )
@@ -39,10 +42,11 @@ function App() {
       });
   }, []);
 
+  // activePieces returns all pieces within the activeFilters state.
+  // it gets called whenever the state of pieceMap or activeFilters is changed.
   const activePieces = React.useMemo(() => {
-    console.log("ActivePieces triggered");
     if (pieceMap) {
-      if (activeFilters.includes("18+")) {
+      if (activeFilters.includes("Nudity")) {
         return pieceMap.filter((piece) =>
           activeFilters.includes(piece.Category)
         );
@@ -80,8 +84,8 @@ function App() {
   }
 
   function sortFilterData(dataCategories) {
-    setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category fiters actve.
-    dataCategories.push("18+"); //for my website I want mature content to be manually selected before its displayed.
+    setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category filters actve.
+    dataCategories.push("Nudity"); //for my website I want content with nudity to be manually selected before its displayed.
     setAllFilters(dataCategories.filter(unique));
   }
 
@@ -89,12 +93,27 @@ function App() {
   return !isLoading ? ( //implement splash page with local assets to minimize loading.
     // boolean? () : () is the syntax for conditional rendering
     <div className="App">
-      <DisplayPieces pieceMap={activePieces} />
-      <Filters
-        allFilters={allFilters}
-        activeFilters={activeFilters}
-        setActiveFilters={setActiveFilters}
-      />
+      <React.StrictMode>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomeFeed
+                  allFilters={allFilters}
+                  activeFilters={activeFilters}
+                  setActiveFilters={setActiveFilters}
+                  pieceMap={activePieces}
+                />
+              }
+            />
+            <Route path="Projects" element={<Projects />} />
+            <Route path="About/" element={<About />}></Route>
+            <Route path="Shop" element={<WIPContainer />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
     </div>
   ) : (
     //we're gunna need to prolly skeleton load inside displayPieces

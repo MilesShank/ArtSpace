@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import About from "./components/About";
-import Header from "./components/Header";
 import reportWebVitals from "./reportWebVitals";
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Header />
-    <About />
     <App />
+    <div
+      id="background-img"
+      class="background-img"
+      alt="outlines of gingko leaves rest in the lower right corner of the screen"
+    ></div>
   </React.StrictMode>
 );
 

@@ -1,12 +1,11 @@
 import React from "react";
 import Piece from "./Piece";
 
-const DisplayPieces = (props) => {
+const DisplayPieces = ({ pieceMap }) => {
   const gDriveImgLink = "https://drive.google.com/uc?id=";
-  //   const [showDetail, setShowDetail] = useState(null);
 
   function displayImages() {
-    return props.pieceMap.map((piece) => {
+    return pieceMap.map((piece) => {
       var imgKey = piece.ImgKey;
       return (
         <Piece url={gDriveImgLink + imgKey} pieceData={piece} key={piece.Key} />

@@ -1,0 +1,74 @@
+:root {
+  --color1: #dcf0ee;
+  --color2: #a9d9d7;
+  --color3: #c6e7e2;
+  --color4: #6dc8bf;
+  --color5: #00a0a8;
+  --color1a: #E6F4F1cc;
+}
+
+@media (orientation: landscape) {
+.aboutContainer{
+  display:grid;
+  grid-template-rows: 250px 4fr;
+  }
+
+  .aboutTypeContainer{
+    margin-top: 10px;
+  }
+
+}
+@media (orientation: portrait) {
+
+.aboutContainer{
+  display:grid;
+  grid-template-rows: 200px 4fr;
+}
+
+}
+
+.aboutTextContainer .bp4-tab{
+color: var(--color5) ;
+font-weight: 600;
+}
+
+.aboutTextContainer .bp4-tab-indicator-wrapper .bp4-tab-indicator{
+background-color: var(--color5);
+}
+
+.aboutTypeContainer{
+    background-color: var(--color1a);
+
+  padding:2%;
+  padding-left: 3%;
+  grid-row: 2;   
+  border-top-color: var(--color4);
+  border-bottom-color: var(--color4);
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+  border-top-style: solid;
+  border-bottom-style:solid;
+}
+.aboutTextContainer{
+    display:grid;
+    color: var(--color6);
+    padding: 5%;
+    padding-top: 0%;
+    font-weight: 500;
+    }
+.aboutPersonal ul li{
+  list-style-type: circle;
+  font-size: medium;
+  padding: 1%
+}
+
+.aboutPersonal h3{
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 3px;
+  padding-bottom: 1%;
+  border-color: var(--color2);
+  border-style: solid;
+  color: var(--color6)
+}

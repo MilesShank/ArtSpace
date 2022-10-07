@@ -1,17 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Overlay, Classes, Button } from "@blueprintjs/core";
+import { Overlay, Classes } from "@blueprintjs/core";
+import "../pieceDetail.css";
 function Piece({ pieceData, url }) {
   const imgStyle = { backgroundImage: `url(${url})` };
   const [isOpen, setIsOpen] = useState(false);
-  const [isInfoDisplayed, setIsInfoDisplayed] = useState(false);
-
   function toggleOverlay() {
     setIsOpen(!isOpen);
-  }
-  function toggleInfo(pieceData) {
-    setIsInfoDisplayed(!isInfoDisplayed);
-    DisplayPieceInfo(pieceData);
   }
 
   function handleClick() {
@@ -45,9 +40,9 @@ function Piece({ pieceData, url }) {
           className={Classes.OVERLAY_SCROLL_CONTAINER}
           hasBackdrop={true}
         >
-          <Button className="closeButton" onClick={toggleOverlay}>
-            X
-          </Button>
+          <div className="closeButton" onClick={toggleOverlay}>
+            x
+          </div>
           <div className="pieceDetail">
             <container className="pieceImageContainer">
               <img
@@ -57,12 +52,7 @@ function Piece({ pieceData, url }) {
               />
             </container>
             <container className="pieceInfoContainer">
-              <Button className="infoButton" onClick={toggleInfo}>
-                Info
-              </Button>
-              {isInfoDisplayed ? (
-                <DisplayPieceInfo pieceData={pieceData} />
-              ) : null}
+              <DisplayPieceInfo pieceData={pieceData} />
             </container>
           </div>
         </Overlay>
@@ -75,11 +65,15 @@ function Piece({ pieceData, url }) {
       <div className="pieceDetailInfo">
         <h6>{pieceData.Title}</h6>
         <ul>
-          <span>{pieceData.Caption}</span>
-          <li>{pieceData.Category}</li>
+          <p>{pieceData.Caption}</p>
+          <br />
+          <li>{pieceData.Category}</li> <br />
           <li>{pieceData.Project}</li>
+          <br />
           <li>{pieceData.DateCreated}</li>
+          <br />
           <li>{pieceData.MaterialsUsed}</li>
+          <br />
         </ul>
       </div>
     );
