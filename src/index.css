@@ -48,10 +48,7 @@ code {
     grid-template-columns: 1fr;
     grid-template-rows: 350px auto;
     }
-    .feedContainer {
-      grid-row: 2 / 2;
-      min-height: 700px;
-    }
+
 }
 
 @media (orientation: portrait) {
@@ -59,10 +56,6 @@ code {
     position:static;
     display:grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 4fr 1fr;
 
     }
-    .feedContainer {
-      grid-row: 3 ;
-    }
-}
+  }
