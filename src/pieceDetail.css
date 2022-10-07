@@ -1,13 +1,18 @@
 @media (orientation: landscape) {
     .pieceDetail{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap-reverse;
+      width: 95vw;
     }
 
 
     .pieceInfoContainer {
-    display:grid;
-    grid-template-rows: 1fr 5fr;
+    height:fit-content;
+    padding-bottom: 5%;
+    padding-right:5%;
+    padding-top:3%;
+    display: absolute;
+    right:0px;
     }
      .closeButton{
       font-size: medium;
@@ -31,25 +36,21 @@
     .pieceDetailInfo {
       color: var(--color5);
       background-color: var(--color1a);;
-      padding: 15%;
-      height: fit-content;
-      margin-left: 25%;
-      margin-right: 15%;
-      /* margin-top: 2%; */
+      padding: 10%;
+      display: flex;
       border-radius: 2px;
-      height: 150%;
+      min-width: 20vw;
     }
     .pieceDetailInfo h6{
       font-size: large;
     }
     .pieceDetailInfo li{
-      padding:5%;
+      padding:2%;
     }
-    .pieceImagecontainer {
-      display: grid;
+    .pieceImageContainer {
       position: relative;
-      float: left;
-  
+      float: center;
+      padding-left: 5%;
 
     } 
 
@@ -57,13 +58,22 @@
       background-color: var(--color3);
       padding: 5px;
       border-radius: 2px;
-      margin-left: 10%;
-      margin-right: 10%;
+      
     }
 
 }
 
 @media (orientation: portrait) {
+  .pieceImagecontainer{
+    margin:1%;
+  }
+
+  .pieceDetailImage {
+    position: relative;
+    display: grid;
+    margin: 3%;
+    margin-top: 15%;
+  }
 
     ul li {
       position: relative;
@@ -73,11 +83,24 @@
     }
   
     .pieceDetail{
-      display: grid;
-      grid-template-rows: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
     }
   }
-
+  .closeButton{
+    font-size: small;
+    padding: 2px ;
+    background-color: var(--color3);
+    border-radius: 50%;
+    padding-bottom: 7px;
+    margin: 10px;
+    z-index: 10;
+  }
+  .closeButton:hover{
+    background-color: var(--color2);
+    color:var(--color1);
+    text-decoration: none;
+  }
   .bp4-overlay-backdrop{
     background-color: var(--color5a) !important;
   }

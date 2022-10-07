@@ -1,6 +1,5 @@
 import React from "react";
-import DisplayFilters from "./DisplayFilters";
-import Carousel from "better-react-carousel";
+import { Tab, Tabs } from "@blueprintjs/core";
 
 function Projects() {
   return (
