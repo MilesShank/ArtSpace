@@ -14,6 +14,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false); //for loading screens
   const [allFilters, setAllFilters] = useState([]); // for all filters
   const [activeFilters, setActiveFilters] = useState([]); //for active filters
+  const [projectTypes, setProjectTypes] = useState([]);
 
   useEffect(() => {
     //this works in place of the previous ComponentDidMount() function
@@ -39,6 +40,21 @@ function App() {
       })
       .catch((error) => {
         console.log("oops another error", error);
+      });
+
+    fetch(
+      "https://sheets.googleapis.com/v4/spreadsheets/1o41jm0d7qFoIJP8QEC8U70q6rvdLO2RSRnjyLOiy_qk/values/ProjectData" +
+        "?key=" +
+        driveData.gkey
+    )
+      .then((response) => {
+        if (response.status !== 200) {
+          throw Error("issue fetching project data from sheets API");
+        }
+        return response.json(); //convert API response to json format.
+      })
+      .then((projectData) => {
+        const mappedProjectData = mapProjectData(projectData.values);
       });
   }, []);
 
@@ -82,7 +98,35 @@ function App() {
 
     return { formattedData, dataCategories, documentationStorage };
   }
+  function mapProjectData(projectDataValues) {
+    console.log(projectDataValues);
+    const projectsToMap = projectDataValues;
+    const piecesToAssign = pieceMap;
+    const projectCategories = [];
+    const projectKeys = projectsToMap.shift();
+    const formattedProjectData = [];
 
+    projectDataValues.forEach((row) => {
+      const project = {};
+      const pieceArray = [];
+      row.forEach((value, index) => {
+        project[projectKeys[index]] = value;
+      });
+      projectCategories.push(project.Type);
+      if (piecesToAssign) {
+        project.pieceArray = pieceArray;
+        piecesToAssign.forEach((piece) => {
+          console.log(piece.Project, project.Name);
+          if (piece.Project === project.Name) {
+            project.pieceArray.push(piece);
+          }
+        });
+      }
+      formattedProjectData.push(project);
+    });
+    console.log(formattedProjectData);
+    setProjectTypes(projectCategories.filter(unique));
+  }
   function sortFilterData(dataCategories) {
     setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category filters actve.
     dataCategories.push("Nudity"); //for my website I want content with nudity to be manually selected before its displayed.
