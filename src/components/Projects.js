@@ -3,7 +3,6 @@ import { Tab, Tabs } from "@blueprintjs/core";
 import "../projects.css";
 
 function Projects(projectTypes, projectData) {
-  console.log(projectTypes, projectData);
   function displayTab(type) {
     return (
       <Tab

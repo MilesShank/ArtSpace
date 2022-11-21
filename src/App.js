@@ -58,7 +58,7 @@ function App() {
         let { mappedProjectData, projectTypeData } = mapProjectData(
           projectData.values
         );
-        console.log(mapProjectData, projectTypeData);
+        // console.log(mapProjectData, projectTypeData);
         setProjectData(mappedProjectData);
         setProjectTypes(projectTypeData);
       });
@@ -105,7 +105,6 @@ function App() {
     return { formattedData, dataCategories, documentationStorage };
   }
   function mapProjectData(projectDataValues) {
-    console.log(projectDataValues);
     const projectsToMap = projectDataValues;
     const piecesToAssign = pieceMap;
     let projectCategories = [];
@@ -122,7 +121,6 @@ function App() {
       if (piecesToAssign) {
         project.pieceArray = pieceArray;
         piecesToAssign.forEach((piece) => {
-          // console.log(piece.Project, project.Name, "LINE 124");
           if (piece.Project === project.Name) {
             project.pieceArray.push(piece);
           }
@@ -130,7 +128,6 @@ function App() {
       }
       formattedProjectData.push(project);
     });
-    console.log(formattedProjectData);
     projectCategories = projectCategories.filter(unique);
 
     return { formattedProjectData, projectCategories };
