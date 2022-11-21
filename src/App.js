@@ -14,7 +14,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false); //for loading screens
   const [allFilters, setAllFilters] = useState([]); // for all filters
   const [activeFilters, setActiveFilters] = useState([]); //for active filters
-  const [projectTypes, setProjectTypes] = useState([]);
+  const [projectData, setProjectData] = useState([]); //for projects
+  const [projectTypes, setProjectTypes] = useState([]); //feel like we don't really need a state for this.
 
   useEffect(() => {
     //this works in place of the previous ComponentDidMount() function
@@ -54,7 +55,12 @@ function App() {
         return response.json(); //convert API response to json format.
       })
       .then((projectData) => {
-        const mappedProjectData = mapProjectData(projectData.values);
+        let { mappedProjectData, projectTypeData } = mapProjectData(
+          projectData.values
+        );
+        console.log(mapProjectData, projectTypeData);
+        setProjectData(mappedProjectData);
+        setProjectTypes(projectTypeData);
       });
   }, []);
 
@@ -102,7 +108,7 @@ function App() {
     console.log(projectDataValues);
     const projectsToMap = projectDataValues;
     const piecesToAssign = pieceMap;
-    const projectCategories = [];
+    let projectCategories = [];
     const projectKeys = projectsToMap.shift();
     const formattedProjectData = [];
 
@@ -116,7 +122,7 @@ function App() {
       if (piecesToAssign) {
         project.pieceArray = pieceArray;
         piecesToAssign.forEach((piece) => {
-          console.log(piece.Project, project.Name);
+          // console.log(piece.Project, project.Name, "LINE 124");
           if (piece.Project === project.Name) {
             project.pieceArray.push(piece);
           }
@@ -125,7 +131,9 @@ function App() {
       formattedProjectData.push(project);
     });
     console.log(formattedProjectData);
-    setProjectTypes(projectCategories.filter(unique));
+    projectCategories = projectCategories.filter(unique);
+
+    return { formattedProjectData, projectCategories };
   }
   function sortFilterData(dataCategories) {
     setActiveFilters(dataCategories.filter(unique)); //want the page to start with all category filters actve.
@@ -152,7 +160,7 @@ function App() {
                 />
               }
             />
-            <Route path="Projects" element={<Projects />} />
+            <Route path="Projects" element={<WIPContainer />} />
             <Route path="About/" element={<About />}></Route>
             <Route path="Shop" element={<WIPContainer />}></Route>
           </Routes>
